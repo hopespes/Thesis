@@ -124,13 +124,6 @@ if [[ ! -d ${DIR} ]]; then
   cached_clone -b master --single-branch --depth 1 https://github.com/pybind/pybind11.git ${DIR}
 fi
 
-# The official https://github.com/dds-bridge/dds.git seems to not accept PR,
-# so we have forked it.
-DIR="open_spiel/games/bridge/double_dummy_solver"
-if [[ ! -d ${DIR} ]]; then
-  cached_clone -b 'develop' --single-branch --depth 1 https://github.com/jblespiau/dds.git ${DIR}
-fi
-
 DIR="open_spiel/abseil-cpp"
 if [[ ! -d ${DIR} ]]; then
   cached_clone -b "${OPEN_SPIEL_ABSL_VERSION}" --single-branch --depth 1 https://github.com/abseil/abseil-cpp.git ${DIR}

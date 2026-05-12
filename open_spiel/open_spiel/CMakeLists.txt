@@ -223,11 +223,10 @@ set (OPEN_SPIEL_CORE_OBJECTS $<TARGET_OBJECTS:open_spiel_core>)
 
 set (OPEN_SPIEL_OBJECTS
   $<TARGET_OBJECTS:open_spiel_core>
-  $<TARGET_OBJECTS:bots>
   $<TARGET_OBJECTS:games>
   $<TARGET_OBJECTS:game_transforms>
-  $<TARGET_OBJECTS:bridge_double_dummy_solver>
   $<TARGET_OBJECTS:algorithms>
+  $<TARGET_OBJECTS:bots>
   $<TARGET_OBJECTS:evaluation>
   $<TARGET_OBJECTS:utils>
   $<TARGET_OBJECTS:tests>
@@ -298,10 +297,6 @@ add_subdirectory (game_transforms)
 # endif()
 
 add_subdirectory (utils)
-
-if (OPEN_SPIEL_BUILD_WITH_JULIA)
-  add_subdirectory (julia)
-endif()
 
 # Build a shared library, i.e. libopen_spiel.so. We generally only enable this
 # for binary releases.
