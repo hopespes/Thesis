@@ -8,6 +8,8 @@ set(GAME_SOURCES
   chess/chess960_starting_positions.cc
   clobber/clobber.cc
   clobber/clobber.h
+  connect_four/connect_four.cc
+  connect_four/connect_four.h
   efg_game/efg_game.cc
   efg_game/efg_game.h
   efg_game/efg_game_data.cc

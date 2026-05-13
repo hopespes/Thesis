@@ -1,0 +1,2 @@
+#!/bin/sh
+open_spiel/build/examples/alpha_zero_torch_example --eval_levels=3 --evaluators=1 --path= 

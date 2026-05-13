@@ -318,7 +318,6 @@ void learner(const open_spiel::Game& game, const AlphaZeroConfig& config,
              const StartInfo& start_info, 
              std::atomic<unsigned long long> *simulations
              ) {
-    std::cout << "the learner is started" << std::endl; 
   FileLogger logger(config.path, "learner", "a");
   DataLoggerJsonLines data_logger(
       config.path, "learner", true, "a", start_info.start_time);
@@ -350,7 +349,6 @@ void learner(const open_spiel::Game& game, const AlphaZeroConfig& config,
        !stop->StopRequested() &&
            (config.max_steps == 0 || step <= config.max_steps);
        ++step) {
-      std::cout << "step" << std::endl;
     outcomes.Reset();
     game_lengths.Reset();
     game_lengths_hist.Reset();
@@ -637,7 +635,6 @@ bool AlphaZero(AlphaZeroConfig config, StopToken* stop, bool resuming) {
 
   for (int i = 0; i < config.actors; i++) {
       simulations[i].store(0);
-      std::cout <<"start "<< simulations[i].load(std::memory_order_relaxed) << std::endl;
   }
 
   for (int i = 0; i < config.actors; ++i) {

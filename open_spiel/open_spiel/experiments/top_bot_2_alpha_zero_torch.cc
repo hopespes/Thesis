@@ -26,7 +26,7 @@
 #include "open_spiel/utils/json.h"
 #include "open_spiel/utils/thread.h"
 
-ABSL_FLAG(std::string, game, "tic_tac_toe", "The name of the game to play.");
+ABSL_FLAG(std::string, game, "go(board_size=9)", "The name of the game to play.");
 ABSL_FLAG(std::string, path, "/tmp/az", "Where to output the logs.");
 ABSL_FLAG(std::string, graph_def, "",
           ("Where to get the graph. This could be from export_model.py, or "
