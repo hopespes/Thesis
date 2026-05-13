@@ -1,0 +1,261 @@
+turochamp:
+  type: chapter
+  title: "Digital Computers Applied to Games"
+  author: Turing, Alan M.
+  parent:
+    type: book
+    title: "Faster Than Thought: A Symposium on Digital Computing Machines"
+    editor: Bowden, B. V.
+    publisher: Pitman
+    date: 1953
+  pages: 286-310
+
+mechanical_turk:
+  type: book
+  title: "Inanimate Reason; or, a Circumstantial Account of That Astonishing Piece of Mechanism, M. de Kempelen's Chess-Player"
+  author: von Windisch, K. G.
+  publisher: S. Bladon
+  date: 1784
+  location: London
+
+kasparov_v_deep_blue:
+  type: web
+  title: "Deep Blue"
+  author: "IBM"
+  url: "https://www.ibm.com/history/deep-blue"
+
+stockfish_blog:
+  type: web
+  title: "Stockfish Blog"
+  author: "IBM"
+  url: "https://stockfishchess.org/blog/2026/stockfish-18/"
+  date: 2026-01-31
+
+sedol_v_alphago:
+  type: web
+  title: "AlphaGo"
+  author: "DeepMind"
+  url: "https://deepmind.google/research/alphago/"
+
+alphago:
+    type: Article
+    title: Mastering the game of Go with deep neural networks and tree search
+    author:
+      - Silver, D.
+      - Huang, A.
+      - Maddison, C.
+      - Guez, Arthur
+      - Sifre, Laurent
+      - van den Driessche, George
+      - Schrittwieser, Julian
+      - Antonoglou, Ioannis
+      - Panneershelvam, Veda
+      - Lanctot, Marc
+      - Dieleman, Sander
+      - Grewe, Dominik
+      - Nham, John
+      - Kalchbrenner, Nal
+      - Sutskever, Ilya
+      - Lillicrap, Timothy
+      - Leach, Madeleine
+      - Kavukcuoglu, Koray
+      - Graepel, Thore
+      - Hassabis, Demis  
+    serial-number:
+      doi: "10.1038/nature16961"
+    page-range: 484-489
+    date: 2016-01-27
+    parent:
+        type: Periodical
+        title: Nature
+        volume: 529
+        publisher: MacMillan Publishers Limited
+
+alphagozero:
+  type: Article
+  title: Mastering the game of Go without human knowledge
+  author:
+    - Silver, David
+    - Schrittwieser, Julian
+    - Simonyan, Karen
+    - Antonoglou, Ioannis
+    - Huang ,Aja
+    - Guez, Arthur
+    - Hubert, Thomas
+    - Baker, Lucas
+    - Lai, Matthew
+    - Bolton, Adrian
+    - Chen, Yutian
+    - Lillicrap, Timothy
+    - Hui, Fan
+    - Sifre, Laurent
+    - van den Driessche, George
+    - Graepel, Thore
+    - Hassabis, Demis
+  serial-number:
+    doi: "10.1038/nature24270"
+  page-range: 354-359
+  date: 2017-10-19
+
+aireport:
+  type: report
+  title: "Artificial Intelligence Index Report 2025"
+  author: "AI Index Steering Committee"
+  publisher: "Stanford Institute for Human-Centered AI (HAI)"
+  date: 2025-04
+  location: "Stanford, CA"
+  url: "https://hai.stanford.edu/ai-index/2025-ai-index-report"
+
+rl_intro:
+  type: book
+  title: "Reinforcement Learning: An Introduction"
+  author:
+    - Sutton, Richard S.
+    - Barto, Andrew G.
+  date: 2018
+  edition: "2nd"
+  publisher: "MIT Press"
+  address: "Cambridge, MA"
+  url: "http://incompleteideas.net/book/the-book-2nd.html"  
+
+perc_rosenblatt:
+  type: Article
+  title: "The Perceptron: A Probabilistic Model for Information Storage and Organization in the Brain"
+  author: Rosenblatt, Frank
+  serial-number:
+    doi: 10.1037/h0042519
+  date: 1958-11-01
+  parent:
+    type: Periodical
+    title: "Psychological Review"
+    volume: 65
+    issue: 5
+
+resnet:
+  type: Article
+  title: "Deep Residual Learning for Image Recognition"
+  author: 
+    - He, Kaiming
+    - Zhang, Xiangyu
+    - Ren, Shaoqing
+    - Sun, Jian
+  date: 2016-06
+  parent:
+    type: Proceedings
+    title: "2016 IEEE Conference on Computer Vision and Pattern Recognition"
+    location: Las Vegas, NV, USA
+  page-range: 770-778
+  serial-number: 
+    doi: 10.1109/CVPR.2016.90
+
+backprop:
+  type: Article
+  title: Learning representations by back-propagating errors
+  author:
+    - Rumelhart, David E.
+    - Hinton, Geoffrey E.
+    - Williams, Ronald J.
+  serial-number:
+    doi: 10.1038/323533a0
+  date: 1986-10
+  parent:
+    type: Periodical
+    title: Nature
+    volume: 323
+  page-range: 533-536
+
+cnn:
+  type: Article
+  title: Gradient-based learning applied to document recognition,
+  author:
+    - Lecun, Y. 
+    - Bottou, L.  
+    - Bengio, Y. 
+    - Haffner, P.
+  serial-number:
+    doi: 10.1109/5.726791
+  date: 1998-11
+  parent:
+    type: Proceedings
+    title: "Proceedings of the IEEE"
+    volume: 86
+    issue: 11
+  page-range: 2278-2324
+
+uct:
+  type: Article
+  title: Bandit Based Monte-Carlo Planning
+  author:
+    - Kocsis, L.
+    - Szepesvári, C.
+  editor: 
+    - Fürnkranz, J. 
+    - Scheffer, T. 
+    - Spiliopoulou, M.
+  serial-number:
+    doi: 10.1007/11871842_29
+  date: 2006
+  parent:
+    type: Book
+    title: "Machine Learning: ECML 2006"
+    parent: 
+      type: Periodical
+      title: Lecture Notes In Computer Science
+      volume: 4212
+      publisher: Springer
+      location: "Berlin, Heidelberg"
+
+rankcorrelation:
+  type: chapter
+  title: Tied Ranks
+  author: 
+    - Kendall, Maurice G.
+    - Gibbons, Jean D.
+  serial-number:
+    isbn: 0195208374
+  parent:
+    type: Book
+    title: Rank Correlation Methods
+    date: 1990
+    edition: 5
+  page-range: 40-60
+
+elo:
+  type: book
+  title: The Rating of Chessplayers, Past & Present
+  author: Elo, Arpad E.
+  serial-number:
+    isbn: 9780923891275
+  date: 1978
+  publisher: Ishi Press International
+  url: "https://archive.org/details/ratingofchesspla0000eloa"
+  edition: reprint
+  
+gnugo:
+  type: repository
+  title: GnuGo
+  url: https://www.gnu.org/software/gnugo/devel.html
+
+manyfaces_patterns:
+  type: Article
+  title: ManyFaces
+  url: https://www.cgl.ucsf.edu/go/Programs/ManyFaces.html
+
+manyfaces_mcts:
+  type: Article
+  title: Monte Carlo Tree Search in Go
+  url: https://webdocs.cs.ualberta.ca/~mmueller/ps/2013/2013-gochapter-preprint.pdf
+
+computer_go:
+  type: Article
+  title: Computer Go
+  author: Martin Müller
+  serial-number:
+    doi: 10.1016/S0004-3702(01)00121-7
+  date: 2002-01
+  parent:
+    type: Periodical
+    title: Artificial Intelligence
+    volume: 134
+    issue: 1-2
+  page-range: 145-179
