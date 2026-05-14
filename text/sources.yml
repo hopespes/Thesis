@@ -69,7 +69,6 @@ alphago:
         type: Periodical
         title: Nature
         volume: 529
-        publisher: MacMillan Publishers Limited
 
 alphagozero:
   type: Article
@@ -94,8 +93,72 @@ alphagozero:
     - Hassabis, Demis
   serial-number:
     doi: "10.1038/nature24270"
+  parent:
+    type: Periodical
+    title: Nature
+    volume: 550
   page-range: 354-359
   date: 2017-10-19
+
+alphazero:
+  type: Article
+  title: Mastering Chess and Shogi by Self-Play with a General Reinforcement Learning Algorithm
+  author:
+    - Silver, David 
+    - Hubert, Thomas 
+    - Schrittwieser, Julian 
+    - Antonoglou, Ioannis 
+    - Lai, Matthew
+    - Guez, Arthur 
+    - Lanctot, Marc 
+    - Sifre, Laurent 
+    - Kumaran, Dharshan 
+    - Graepel, Thore 
+    - Lillicrap, Timothy 
+    - Simonyan, Karen 
+    - Hassabis, Demis 
+  serial-number:
+    doi: 10.48550/arXiv.1712.01815
+
+muzero:
+  type: Article
+  title: Mastering Atari, Go, Chess and Shogi by Planning with a Learned Model
+  author:
+    - Schrittwieser, Julian
+    - Antonoglou, Ioannis
+    - Hubert, Thomas
+    - Simonyan, Karen
+    - Sifre, Laurent
+    - Schmitt, Simon
+    - Guez, Arthur
+    - Lockhart, Edward
+    - Hassabis, Demis
+    - Graepel, Thore
+    - Lillicrap, Timothy
+    - Silver, David
+  serial-number:
+    doi: 10.48550/arXiv.1911.08265
+
+gumbelzero:
+  type: Article
+  title: Policy Improvement by Planning with Gumbel
+  author:
+    - Danihelka, Ivo
+    - Guez, Arthur
+    - Schrittwieser, Julian
+    - Silver, David
+  parent:
+    type: conference
+    title: International Conference on Learning Representations
+  date: 2022
+
+katago:
+  type: Article
+  title: Accelerating Self-Play Learning in Go
+  author: Wu, David J.
+  date: 2020-11-10
+  serial-number:
+    doi: 10.48550/arXiv.1902.10565
 
 aireport:
   type: report
@@ -259,3 +322,109 @@ computer_go:
     volume: 134
     issue: 1-2
   page-range: 145-179
+
+mcts:
+  type: Article
+  title: Efficient Selectivity and Backup Operators in Monte-Carlo Tree Search
+  author: Rémi Coulom
+  serial-number:
+    doi: 10.1007/978-3-540-75538-8_7
+  date: 2006-05
+  parent:
+    type: conference
+    title: Computers and Games
+    location: Turin, Italy
+    publisher: Springer, Berlin, Heidelberg
+  page-range: 72-83
+
+mogo:
+  type: Article
+  title: "The Grand Challenge of Computer Go: Monte Carlo Tree Search and Extensions"
+  author:
+    - Gelly, Sylvain
+    - Kocsis, Levente
+    - Silver, David
+    - Szepesvári, Csaba
+  serial-number:
+    doi: 10.1145/2093548.2093574
+  date: 2012-03
+  parent:
+    type: Periodical
+    volume: 55
+    issue: 3
+  page-range: 106-113
+
+d_mcts:
+  type: Article
+  title: "Learning to Stop: Dynamic Simulation Monte-Carlo Tree Search"
+  author:
+    - Lan, Li-Cheng
+    - Tsai, Meng-Yu
+    - Wu, Ti-Rong
+    - Wu, I-Chen
+    - Hsieh, Cho-Jui
+  serial-number:
+    doi: 10.48550/arXiv.2012.07910
+
+combinatorics:
+  type: Article
+  title: "Combinatorics of Go"
+  author:
+    - Tromp, John
+    - Farnebäck, Gunnar
+  editor:
+    - van den Herik, H. Jaap
+    - Ciancarini, Paolo
+    - Donkers, H. H. L. M.
+  serial-number: 
+    doi: 10.1007/978-3-540-75538-8_8
+  parent:
+    type: conference
+    title: Computers and Games
+    date: 2006
+    publisher: Springer Berlin, Heidelberg
+    location: Berlin, Heidelberg
+    serial-number:
+      isbn: 978-3-540-75538-8
+  page-range: 84-99
+
+openspiel:
+  type: Article
+  title: "OpenSpiel: A Framework for Reinforcement Learning in Games"
+  serial-number:
+    doi: 10.48550/arXiv.1908.09453
+    arxiv: abs/1908.09453
+  author:
+    - Lanctot, Marc 
+    - Lockhart, Edward 
+    - Lespiau, Jean-Baptiste 
+    - Zambaldi, Vinicius 
+    - Upadhyay, Satyaki 
+    - Pérolat, Julien 
+    - Srinivasan, Sriram 
+    - Timbers, Finbarr 
+    - Tuyls, Karl 
+    - Omidshafiei, Shayegan 
+    - Hennes, Daniel 
+    - Morrill, Dustin 
+    - Muller, Paul 
+    - Ewalds, Timo 
+    - Faulkner, Ryan 
+    - Kramár, János 
+    - De Vylder, Bart 
+    - Saeta, Brennan 
+    - Bradbury, James 
+    - Ding, David 
+    - Borgeaud, Sebastian 
+    - Lai, Matthew 
+    - Schrittwieser, Julian 
+    - Anthony, Thomas 
+    - Hughes, Edward 
+    - Danihelka, Ivo 
+    - Ryan-Davis, Jonah 
+  date: 2019
+  parent: 
+    type: Periodical
+    title: CoRR
+    volume: abs/1908.09453
+  url: http://arxiv.org/abs/1908.09453

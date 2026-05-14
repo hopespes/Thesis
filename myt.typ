@@ -427,32 +427,35 @@ played.
 === After MCTS
 
 Earlier Go programs were found to perform well in specific parts of the game like
-life-and-death-problems or local tactical analysis @computer_go. However they
+life-and-death problems or local tactical analysis @computer_go. However they
 were unable to play a complete game well or even better than amateur players.
 Programs of this level of sophistication could not achieve the same level of
 success
 for Go as for chess, because the computational search for Go is drastically
-different. While it is not the only factor, the search space is much larger on a
+different. While it is not the only factor, the state-space is much larger on a
 large board,
-$3^(19 times 19) approx 10^170$. However, Go on a 9 #math.times 9-board has a
+$3^(19 times 19) approx 10^170$ of which $1.2%$ are legal. However, Go on a 
+9 #math.times 9-board has a
 similar a branching factor to chess and has proved equally as difficult as Go on
-a large board. This is due static position evaluation requiring a large amount
+a large board. This is due to static position evaluation requiring a large 
+amount
 of local auxiliary computations. Additionally, in order to find legal moves, the
-history of the game has to be contained within the state information to account
-for special rules such as Ko.
+recent history of the game has to be contained within the state information 
+to account
+for special rules such as Ko that forbid repetition.
 
 As the typical game is also much longer than in chess, MCTS is a tool better 
 suited to explorations because it is capable of a more
-dynamical approach. Furthermore, short-term profit may often be outpaced by an
+dynamical approach @mcts. Furthermore, short-term profit may often be outpaced by an
 opponent's stronger tactical play. With the introduction of MCTS into the field
 of Computer Go, programs became
-drastically better. 
+improved significantly. 
 
 In Go on a 9 #math.times 9-board, a 5 dan professional player was
-beaten by MoGo in 2007. In 2009, a 9 dan professional by Fuego. In the course of
+beaten by MoGo in 2007; in 2009, a 9 dan professional by Fuego @mogo. In the course of
 pure MCTS applied to Go on a 19 #math.times 19-board, various models managed to
 defeat high-ranking professional players, albeit with up to 9 handicap stones,
-and retain a ranking of 4 dan on online play.
+and gained a ranking of 4 dan on online play.
 
 
 
@@ -463,8 +466,8 @@ and retain a ranking of 4 dan on online play.
 
 === AlphaGo
 
-The AlphaGo-algorithm is a complex system of neural networks, MCTS, supervised
-learning (SL), and reinforcment learning (RL). 
+The AlphaGo-algorithm is a complex system of CNNs, MCTS, supervised
+learning (SL), and RL @alphago. 
 SL policy network $p_sigma$ and SL sample network $p_pi$ were trained from a
 database of expert-level moves. $p_pi$ was trained to accurately predict human
 moves. $p_pi$ was designed to quickly sample actions during the rollout in the
@@ -518,7 +521,7 @@ whether that node was visited in the $i$th iteration.
 
 === AlphaGo Zero
 AlphaGo Zero represents a significant improvement over its predecessor,
-achieving better performance through a more efficient architecture. By
+achieving better performance through a more efficient architecture @alphagozero. By
 eliminating the need for human expert data, it masters the game entirely through
 self-play.
 
@@ -565,7 +568,7 @@ rotating the board and thus generating more valid game positions.
 
 
 === AlphaZero
-AlphaZero is another iteration on this self-play algorithm. While ultimately the
+AlphaZero is another iteration on this self-play algorithm @alphazero. While ultimately the
 same structure as AlphaGo Zero, the domain-specific optimisation that Go is
 rotationally invariable is removed which reduces the amount of data of data
 available for this game.
@@ -576,17 +579,17 @@ AlphaZero managed to beat state-of-the-art models in chess (Stockfish), shogi
 === The Alpha-Models
 There are multiple named versions of AlphaGo, each with their own achievements.
 AlphaGo Fan, which was the program to win against a human professional on a $9
-times 9$ board, won $5$-nil. AlphaGo Lee Sedol won against Lee Sedol with a
+times 9$ board, won $5$-nil @alphago. AlphaGo Lee Sedol won against Lee Sedol with a
 record
 of $4-1$. The last iteration, AlphaGo Master, won against top human 
-professionals in online games with a record of $60-0$. When these models were 
+professionals in online games with a record of $60-0$ alphagozero. When these models were 
 compared to AlphaGo Zero, their
 Elo ratings were $3,144$, $3,739$, and $4,858$, respectively. AlphaGo Zero
-received a rating of $5,158$.
+received a rating of $5,158$ alphagozero.
 
 
 === MuZero
-MuZero is a generalisation of the Alpha-family. While previous models required a
+MuZero is a generalisation of the Alpha-family @muzero. While previous models required a
 working model of the environment, MuZero is capable of learning about the
 environment through interaction with the environment. While also achieving
 similar results on traditional games such as Go and chess, it is also capable of
@@ -597,12 +600,14 @@ professionals.
 === Gumbel AlphaZero
 Google DeepMind's successor model, Gumbel AlphaZero, breaks from traditional
 MCTS using UCB or variants, and
-instead makes use of other policy improvement strategies.
+instead makes use of other policy improvement strategies @gumbelzero.
 One such strategy is Sequential Halving.
 
 === KataGo
-KataGo represents a significant step to the wider Computer Go community. While
-stronger models such as #fill[] exist, KataGo is one the few open-source models.
+KataGo represents a significant step to the wider Computer Go community @katago. 
+While
+similarly strong models such as FineArt exist, KataGo is one the few open-source 
+models.
 Improving on the architecture and
 process of AlphaZero, KataGo introduces and publicly explains several
 domain-dependent and -independent additions to improve efficiency,
@@ -640,73 +645,73 @@ Some of these features include:
 ==== Dynamic MCTS
 Forming a basis for this thesis, Lan et al. introduced
 estimations of uncertainty at intervals during training, to determine whether
-continued search is necessary. As MCTS finds the optimal move after 1
+continued search is necessary @d_mcts. As MCTS finds the optimal move after 1
 simulation 62% of the time, and most positions require far less than the
-maximal number for the same. Thus, if there is founded certainty that the best
-move has been found, search should terminate. #fill[more?]
+maximal number for the same, it is permissible to explore fewer situations. 
+Thus, if there is founded certainty that the best
+move has been found, search should terminate.
 
 = Methodology
 
 == Reasoning 9 #math.times 9 vs. 19 #math.times 19
-A $9 times 9$ board has a state-space complexity of #fill[], of which #fill[]
-are legal. In contrast, a $19 times 19$ board has #fill[] possible positions and
-#fill[] legal positions which constitutes an increase of #fill[] percent. Thus,
+A $9 times 9$ board has a state-space complexity of $3^81 approx 4 times 10^38$,
+of which $23.43% approx 1.04 * 10 ^ 38$ @combinatorics
+are legal. 
+In contrast, a $19 times 19$ board has $3*(19 times 19) approx 1.74 * 10^172$ 
+possible positions and $2.082 times 10^170$
+ legal positions . Thus,
 in order to gain comprehensive results within the hardware and temporal limits
 of this thesis, the board size is restricted to $9 times 9$.
 
 
-== AlphaZero > Alternatives
-The base model for this thesis is AlphaZero for simple reasons.
-Open-sourced model KataGo competes at the current state-of-the-art in
-Go-playing. 
-To
-achieve this level, KataGo is highly optimised using a multitude of methods,
-including those above. Introducing a new heuristic, it is difficult to determine
-whether resulting performance is due to the heuristic itself or its interaction
-with one or more of KataGo's many existing optimisations. Furthermore, the
+== Choosing AlphaGo Zero Over Alternatives
+The basic AlphaZero structure is used as the baseline in this work for reasons
+of clarity and experimental control.
+Although models such as KataGo achieves state-of-the-art performance @katago, 
+it does so by
+incorporating a wide range of engineering optimisations, training heuristics,
+and system-level improvements. As a result, isolating the effect of
+modifications within such a system can be difficult, since performance gains may
+arise from interactions with existing components rather than the modification
+itself. 
+
+Similarly, improvements 
+
+
+To achieve this level, KataGo is highly optimised 
+using a multitude of methods,
+including those above @katago. Introducing a new heuristic, 
+it is difficult to determine
+whether resulting performance is due to the heuristic 
+itself or its interaction
+with one or more of KataGo's many existing optimisations. 
+Furthermore, the
 codebase includes and is highly optimised for a variety of use-cases. This
 includes training on multiple machines, the optimisations explained above, and
-generalisability to multiple board sizes. This combines to a complex codebase
-that I do not want to deal with. #linebreak()
-Despite the successes of the Gumbel models over their predecessors, the
-general idea of using MCTS in such manners remains largely the pattern most
-models emulate.
+generalisability to multiple board sizes. This combines to a complex 
+codebase
+that introduces unnecessary complications into the development process. 
+
+Despite the relative successes of the Gumbel models compared to their PUCT-based
+predecessors @gumbelzero, the PUCT-based models remain the most widely employed
+approach in the popular Go models @katago.
 
 
-As an open-source project, KataGo competes at the level of the current
-state-of-the-art in Go-playing
-AI. To achieve this level of performance, KataGo is highly optimised using a
-multitude of methods, including those mentioned above. If a new heuristic is
-tested on top of
-those optimisations, it is difficult to determine whether the resulting
-performance gain
-is due to the heuristic itself or its interaction with one of KataGo’s many
-existing optimisations.
-Furthermore, KataGo's codebase is highly optimised for and includes a variety of
-use-cases. This includes
-support for distributed training on multiple machines, the optimisations
-explained above, and usage of multiple board sizes during the training loop.
-Thus, in order to increase legibility of the codebase and reducability on the
-implemented optimisations of this research, AlphaZero is used as a baseline.
-#check[]
-
-#fill[Using Dynamic MCTS paper as further comparison]
 
 
 == Environment (Training server, implementation)
 The primary research tool for this study is OpenSpiel, an open-source framework
-developed by Google DeepMind to simplify RL resarch in games. It provides a
-robust, community-validated implementation of the AlphaZero algorithm and native
-support for Go.
+developed by Google DeepMind to simplify RL resarch in games @openspiel. 
+It provides a robust, community-validated 
+implementation of the 
+AlphaZero algorithm and native
+support for the game Go.
 
-OpenSpiel's AlphaZero implementation and the parts are entirely written in C++
-for increased performance over Python implementations. It uses OpenSpiel's
-custom MCTS implementation and Meta's ML-library LibTorch for high-performance.
-The training loop and data management are implemented in Python.
-Game Representation: The 9x9 Go environment in OpenSpiel follows standard
-Tromp-P Taylor rules. The state is represented as a 9×9×17 tensor, encoding
-the current board position, previous moves (for history/ko), and the current
-player's color.
+OpenSpiel's AlphaZero implementation is entirely written in C++. It uses
+OpenSpiel's custom MCTS implementation and Meta's ML-library LibTorch. The
+9 #math.times 9 Go environment in OpenSpiel follows standard Tromp-P Taylor 
+rules.
+
 
 === Computational Resources: University HPC Cluster
 
@@ -736,9 +741,6 @@ the amount of simulation needed to generate a successful training sequence while
 lowering the computational efforts.
 
 
-
-#fill[Positives and Negatives for each heuristic, why are they better? Do they
-actually lower computational effort?]
 
 === Entropy of Likeliest $k$ Actions
 The goal for this heuristic is to calculate the entropy of the $k$ highest-rated
