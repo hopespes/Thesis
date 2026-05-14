@@ -1,6 +1,6 @@
-[2026-05-13 10:02:49.999] learner started
-[2026-05-13 10:02:49.999] Running the learner on device 0: /cpu:0
-[2026-05-13 14:07:41.058] Step: 1
-[2026-05-13 14:07:41.058] Collected  5989 states from  80 games, 0.4 states/s; 0.1 states/(s*actor), game length: 74.9, simulations: 1892733
-[2026-05-13 14:07:41.058] Queue size: 0. Buffer size: 5989. States seen: 5989
-[2026-05-13 14:07:41.062] Closing the log.
+[2026-05-13 15:12:21.823] learner started
+[2026-05-13 15:12:21.823] Running the learner on device 0: /cpu:0
+[2026-05-13 19:14:37.979] Step: 1
+[2026-05-13 19:14:37.979] Collected 13611 states from 133 games, 0.9 states/s; 0.2 states/(s*actor), game length: 102.3, simulations: 4439275
+[2026-05-13 19:14:37.979] Queue size: 0. Buffer size: 13611. States seen: 13611
+[2026-05-13 19:14:37.994] Closing the log.
