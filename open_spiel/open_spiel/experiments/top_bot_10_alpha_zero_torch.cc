@@ -19,7 +19,7 @@
 
 #include "open_spiel/abseil-cpp/absl/flags/flag.h"
 #include "open_spiel/abseil-cpp/absl/flags/parse.h"
-#include "open_spiel/algorithms/top_bot_10_alpha_zero_torch/alpha_zero.h"
+#include "open_spiel/algorithms/simple/top_bot_10_alpha_zero_torch/alpha_zero.h"
 #include "open_spiel/spiel_utils.h"
 #include "open_spiel/utils/file.h"
 #include "open_spiel/utils/init.h"

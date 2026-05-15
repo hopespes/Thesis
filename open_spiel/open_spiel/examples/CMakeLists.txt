@@ -6,18 +6,18 @@ add_executable(policy_iteration_example policy_iteration_example.cc ${OPEN_SPIEL
 add_test(policy_iteration_example_test policy_iteration_example)
 
 
-if (OPEN_SPIEL_BUILD_WITH_LIBTORCH)
-  add_executable(alpha_zero_torch_example alpha_zero_torch_example.cc
-                ${OPEN_SPIEL_OBJECTS}
-                $<TARGET_OBJECTS:alpha_zero_torch>)
-  target_link_libraries (alpha_zero_torch_example ${TORCH_LIBRARIES})
-
-  add_executable(alpha_zero_torch_game_example alpha_zero_torch_game_example.cc
-                ${OPEN_SPIEL_OBJECTS}
-                $<TARGET_OBJECTS:alpha_zero_torch>
-                $<TARGET_OBJECTS:bots>)
-  target_link_libraries (alpha_zero_torch_game_example ${TORCH_LIBRARIES})
-endif ()
+# if (OPEN_SPIEL_BUILD_WITH_LIBTORCH)
+#   add_executable(alpha_zero_torch_example alpha_zero_torch_example.cc
+#                 ${OPEN_SPIEL_OBJECTS}
+#                 $<TARGET_OBJECTS:alpha_zero_torch>)
+#   target_link_libraries (alpha_zero_torch_example ${TORCH_LIBRARIES})
+#
+#   add_executable(alpha_zero_torch_game_example alpha_zero_torch_game_example.cc
+#                 ${OPEN_SPIEL_OBJECTS}
+#                 $<TARGET_OBJECTS:alpha_zero_torch>
+#                 $<TARGET_OBJECTS:bots>)
+#   target_link_libraries (alpha_zero_torch_game_example ${TORCH_LIBRARIES})
+# endif ()
 
 if (BUILD_SHARED_LIB)
   if (WIN32)

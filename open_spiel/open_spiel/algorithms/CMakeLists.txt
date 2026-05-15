@@ -63,11 +63,4 @@ add_executable(tabular_exploitability_test tabular_exploitability_test.cc
 add_test(tabular_exploitability_test tabular_exploitability_test)
 
 add_subdirectory (alpha_zero_torch)
-add_subdirectory (vanilla_alpha_zero_torch)
-add_subdirectory (top_2_alpha_zero_torch)
-add_subdirectory (top_5_alpha_zero_torch)
-add_subdirectory (top_10_alpha_zero_torch)
-add_subdirectory (top_bot_2_alpha_zero_torch)
-add_subdirectory (top_bot_5_alpha_zero_torch)
-add_subdirectory (top_bot_10_alpha_zero_torch)
-add_subdirectory (rl_alpha_zero_torch)
+add_subdirectory (simple)
