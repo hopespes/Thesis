@@ -1,5 +1,4 @@
 #set text(font:"Open Sans", size:11pt, hyphenate: false)
-#set page(numbering:"1")
 #set par(justify: true, leading: 1.5em)
 #set heading(numbering: "1.1")
 #show math.equation.where(block: false): box
@@ -15,49 +14,150 @@
 #import "@preview/algorithmic:1.0.7"
 #let AE=("left","bottom","right","top")
 
-#place(
-  top + center,
-  scope: "parent",
-  float: true,
-  text(1.4em, weight: "bold")[
-    Dynamic Adjustment of Monte Carlo Tree Search #linebreak() Simulations for a
-    9 #math.times 9-Go-AI
-  ],
-)
+#let render-title-table(entries) = {
+  align(
+    center,
+    grid(
+      columns: 2,
+      gutter: 1em,
+      align: left,
+      ..for (term, desc) in entries {
+        ([*#term:*], desc)
+      }
+    )
+  )
+}
 
-#let max_number=300
+#let titlepage(
+  title: [Dynamic Adjustment of Monte Carlo Tree Search Simulations for A 9 #math.times
+9-Go-AI],
+  titleGerman: "",
+  degree: "Bachelor",
+  program: "Cognitive Science",
+  examiner: "Tobias Thelen",
+  supervisors: (),
+  author: "Moritz Richter",
+  startDate: datetime(year: 2026, month: 03, day: 10),
+  submissionDate: datetime(year: 2026, month: 06, day: 10),
+) = {
+  // Quality checks
+  assert(degree in ("Bachelor", "Master"), message: "The degree must be either 'Bachelor' or 'Master'")
+  
+  set page(
+    margin: (left: 20mm, right: 20mm, top: 30mm, bottom: 30mm),
+    numbering: none,
+    number-align: center,
+  )
+
+  set text(
+    // font: fonts.body, 
+    size: 12pt, 
+    lang: "en"
+  )
+
+  set par(leading: 0.5em)
+
+  
+  // --- Title Page ---
+  v(5mm)
+  align(center, text(
+    // font: fonts.sans, 
+    2em, 
+    weight: 700, 
+    "Osnabruck University")
+  )
+
+  v(5mm)
+  align(center, text(
+    // font: fonts.sans, 
+    1.5em, 
+    weight: 100, 
+    "Institute for Cognitive Science")
+  )
+  
+  v(15mm)
+  align(center, text(
+    // font: fonts.sans, 
+    1.3em, 
+    weight: 100, 
+    degree + "’s Thesis in " + program)
+  )
+  v(8mm)
+  
+
+  align(center, text(
+    // font: fonts.sans, 
+    1.5em, 
+    weight: 700, 
+    title)
+  )
+  
+
+  align(center, text(
+    // font: fonts.sans, 
+    2em, 
+    weight: 500, 
+    titleGerman)
+  )
+
+  let entries = ()
+  entries.push(("Author", author))
+  entries.push(("Examiner", examiner))
+  // Only show supervisors if there are any
+  if supervisors.len() > 0 {
+    let supervisorField = "Supervisor" + if supervisors.len() > 1 [s]
+    entries.push((supervisorField, supervisors.join(", ")))
+  }
+  entries.push(("Start Date", startDate.display("[day].[month].[year]")))
+  entries.push(("Submission Date", submissionDate.display("[day].[month].[year]")))
+
+  v(1cm)
+  render-title-table(entries)
+}
+
+#titlepage()
+
+
 
 #outline()
-
 #pagebreak()
+#let max_number=300
+#set page(numbering:"1")
+
 = Introduction
 Creating a machine that is capable of playing games has been a
 fascination to
 humanity @mechanical_turk and an integral part of
-Computer Science @turochamp for a long time. It is a benchmark to human 
+computer science @turochamp for a long time. It is a benchmark to human 
 intelligence and
-an exploration of the boundaries of what is capable using
-artificial decision making. This culminated in the defeat of reigning world-chess
-champion, Garry Kasparov, at the computations of the IBM chess computer DeepBlue
+an exploration of the boundaries of what is possible using
+artificial decision making. This culminated in the defeat of 
+reigning world-chess
+champion, Garry Kasparov, at the computations of the IBM 
+chess computer DeepBlue
 in 1997 @kasparov_v_deep_blue.
-This spurred on further improvement on chess machines that is still ongoing
+This spurred further improvement on chess machines that is still ongoing
 @stockfish_blog and research on a
 multitude of other games. 
-One such game is the popular game by the name of Go. It remained a unbeaten challenge to
-scientists for 19 more years @sedol_v_alphago. While many approaches were tested, it was not
+One such game is the popular game by the name of Go which remained an
+unbeaten challenge to
+scientists for 19 more years @sedol_v_alphago. While many approaches 
+were tested, it was not
 until 2016 that, on equal footing, a
 high-ranking professional player was beaten by Google-DeepMind's artificial
 intelligence (AI), AlphaGo. AlphaGo used a vastly different approach from earlier
 game computers and programs @alphago. It combined Deep Neural Network (DNN) training with
-exploration guided by distributions output by the neural network. #cite
+exploration guided by distributions output by the neural network. #fill[Hier
+sind die Quellen halt nicht in einem verfügbar]
 
 
 == Problem
-One issue that is apparent with most AIs is the amount of ressources that is
-necessary for training as well as for their subsequent deployment @aireport. Literature
-and the news are abundant with ever-growing models with needs for more and
+One common issue across most AIs is the amount of resources that is
+necessary for training as well as for their subsequent 
+deployment @aireport. Literature
+and news are abundant with ever-growing models with needs for more and
 better hard-ware and energy.
-While improving AI's capability in all domains is an important 
+While improving AI's capability in all domains is an 
 important pursuit to stretch
 the limits of what is possible, it is also important to lower the costs of
 operating such machines. In particular, algorithms that make use of Monte Carlo Tree
@@ -76,13 +176,14 @@ use
 probabilties generated by the predictor while upholding the same level of
 performance. 
 The development and implementation of such predictive heuristics are the goal of this 
-thesis.
+thesis. In the end, these heuristics will be tested competing against each other
+and ranked using the Elo-system @elo.
 
 
 
-= Background knowledge
-== Go
-Go is a Chinese board game that has a history spanning more than 4,000 years.  It is
+= The Rules of Go
+Go is a board game that originated in China with a history spanning more than 
+4,000 years.  It is
 played by two-players using black and white stones. While usually played on a 19
 #math.times 19-grid, other board sizes like 9 #math.times 9 or 13 #math.times 13
 are also common. 
@@ -92,12 +193,15 @@ intersections, than the opponent.
 The players place stones in turn; the player with the black stones begins. The
 group of free places around a single stone are called liberties, see @liberties. 
 Stones of the same colour that are placed on neighbouring fields are considered
-a group and share the liberties. A group may be arbitrarily large. A
+a group and share the same liberties. A group may be arbitrarily large. A
 group of the opponent can be captured by filling in all liberties of the
 group, see @capturing. While generally any stone may be placed anywhere on the
-board, it may not be placed in places where the stone or its group dies because
-of the stone having been placed. The exception is if the stone is the cause for
-a successful capture of the opponent's stones. Importantly, a board position may
+board, it may not be placed in places where the stone or 
+its group is captured because
+of the stone having been placed. The exception is if the 
+stone is the cause for
+a successful capture of the opponent's stones. 
+Importantly, a board position may
 not be immediately repeated. This means,
 after a stone has been captured, the capturing stone may not be recaptured
 on the next move.
@@ -130,7 +234,7 @@ This is called Ko.
           open-edges-added-length: 7%,
         ))
       },
-      caption: [Capturing a Stone],
+      caption: [Capturing a Stone with #linebreak() the last liberty],
     ) <capturing>
   ],
 )
@@ -138,7 +242,7 @@ This is called Ko.
 The game ends when both players pass consecutively, typically when all
 meaningful moves have been played and the territories are settled.
 Once play is concluded, the territory is counted.
-Unoccpied grid intersections within their territory each correspond to each
+Unoccupied grid intersections within their territory each correspond to one
 point for the respective
 player. Captured stones each represent additional points for the player who
 captured them. Captured stones that remain on the board while counting are worth
@@ -147,27 +251,35 @@ two points for the occupied field and the stone itself.
 To compensate black's advantage in going first and avoid draw, additional
 5.5-7.5 points are awarded to white. This is called komi.
 Komi can be adjusted to even out the differences in capability
-between inequally strong players. Lastly, komi can be combined with a handicap
-that places black stones on predetermined spots on the board.
+between inequally strong players. Lastly, komi can be combined with handicap
+stones with which
+black stones are placed on predetermined spots on the board before the start of
+the game. In this case, the white players places the first stone.
 
 Traditionally, players, human or computational, are attributed ranks based on 
 strength. Beginners' ranks start at 30 kyu. The limit 1 
 kyu. After reaching 1 kyu, players can reach rankings from 1 dan to 9 dan. 
 Professional players are ranked 
 separately with their own dan-scale. Nowadays, players are also evaluated using
-the Elo-system.
+the Elo-system @elo. AIs are also ranked with the Elo-system and given
+symbolical traditional ranks.
 
 
 = Technical Background
 
+== Supervised Learning
+Supervised learning (SL) describes a machine learning (ML) paradigm in which an
+agent is taught to recognise patterns from labeled data examples.
+
 == Reinforcement Learning and Self-Play
-Reinforcement Learning (RL) describes a Machine Learning (ML) paradigm in which
+In contrast to SL, Reinforcement Learning (RL) is a collection of methods with 
+which
 an agent is trained to maximize a reward signal in interaction with its
 environment @rl_intro.
 Generally during training, an agent makes use of two concepts called
-exploitation and exploration. On one side, to exploit
-is to choose a path of action that is known to produce a good result. On the
-other side, to explore is to choose a path of action that is not well-known and
+exploitation and exploration. On one side, exploitation
+is choosing a path of action that is known to produce a good result. On the
+other side, exploration is choosing a path of action that is not well-known and
 thus, upon further examination, may produce a better result than already known
 paths of action.
 
@@ -184,15 +296,19 @@ remains as the benchmark and is to be beaten. This, more than the randomised
 selection shows growth in performance of the agent.
 
 
-== Deep Neural Networks
+== Neural Networks
 
 === Artificial Neural Networks
-Today, artificial neural networks (ANN) are one of the most used and researched
-technologies. With their groundwork laid in 1958 @perc_rosenblatt, new methods 
+Currently, artificial neural networks (ANN) are one of the 
+most used and researched
+technologies. After their groundwork was laid in 1958 by Rosenblatt 
+@perc_rosenblatt with the invention of the perceptron, new methods 
 have been since
 been developed for a large number of purposes, not the least of which is playing
 games and improving beyond human capabilities.
 
+The basic structure of ANNs consists of multiple layers of many stacked neurons
+with a specific input layer and an output layer.
 Generally, ANNs receive an input of arbitrary format, defined per usecase.
 During the forward pass, the
 signal of 
@@ -208,15 +324,10 @@ error signal.
 
 === Residual Neural Networks
 In the course of research and development of ANNs, they have grown exponentially
-deeper. Beginning with a single perceptron, which were then used in a single 
-layers, now, there are networks using neurons with more than 100 layers and a 
+deeper. Beginning with single perceptrons, which were used in a single 
+layer, modern networks use neurons with more than 100 layers and a 
 large number of perceptrons per layer. Users of ANNs of this size noticed the 
-problem of the Vanishing Gradient @resnet. In the process of backpropagation, the 
-derivatives' chain rule is employed. For that, multiple small decimal numbers
-are repeatedly multiplied. This produces even smaller decimal numbers
-The Vanishing Gradient describes the phenomenon that the error signal
-that early layers of the networks receive is too small to effectively change the
-weights and biases of those layers. This stops learning from having any effect.
+problem of the vanishing gradient @resnet. 
 
 To solve this problem, residual neural networks (ResNet) were introduced in Deep Learning
 (DL) problems. ResNet's make use of  "skipping
@@ -227,14 +338,16 @@ layer further down the stack of layers, skipping the layers inbetween. The
 residual output is added to the output of the layer, to which it is is
 projected.
 This largely
-fixes the Vanishing Gradient since the output of the layer is passed further
+fixes the vanishing gradient since the output of the layer is passed further
 into the stack of layers. 
 
 A negative point in this setup is that the intermediate layers may be found to
-be superfluous and converge to $0$ during training.
+be superfluous and converge to $0$ during training but still demand the
+necessary effort for their computation.
 
 === Convolutional Neural Networks
-Most objects depend on their multi-dimensional structure to be considered when
+Most objects of the physical world depend on their multi-dimensional structure 
+to be considered when
 analysing them. Images, for example, rely on the spatial position of pixels in
 relation to one another in order to correctly depict objects. Humans make use of
 layered groups of neurons with distinct tasks to recognise groups of features
@@ -254,15 +367,15 @@ these layers can be learned through training.
 
 #linebreak()
 
-Go, being a board game that played in two-dimensions, is especially well-suited to 
-being
-analysed using CNNs. Much like recognising an object, local situations such as
-fights or life-and-death can be
+Go, being a board game that is played in two-dimensions, 
+is especially well-suited to being
+analysed by CNNs. Much like recognising an object, situations such as
+fights or life-and-death that cause a local effect can be
 analysed in early layers and evaluated within the global context of the match in
 later layers. For proper recognition and evaluation of local and global
 situations, Go requires deep insight of the board. For more accurate
-representations of the global position, the combination with ResNets becomes
-vital to sustain trainability.
+representations of the global position, the combination with ResNets therefore 
+becomes vital to sustain trainability in growing networks.
 
 
 
@@ -278,25 +391,28 @@ Every node $i$ of the tree keeps track of how many simulations made use of $i$,
 $n_i$, and how many simulations are considered wins, $w_i$.
 There are four stages to MCTS:
 + Selection: From $R$, choose a child node according to a selection
-  method.
+  method, often a variant of UCT @uct.
   Repeat until choosing a leaf node $C$.
-+ Expansion: If $C$ is not a terminal state, meaning, there is a possible following
-  state, create new child nodes. Choose a new child state $S$.
++ Expansion: If $C$ is not a terminal state, which in Go is a state in which
+  both players have passed and playing does not continue, 
+  create new child nodes. Choose a new child state $S$ according to the
+  selection method.
 + Evaluation #footnote[This step is also called simulation. For the sake of
   clarity within the scope of this thesis, "evaluation" will be used for this step
-  of the process.]: Evaluate $S$. $S$ may be evaluated by choosing random 
-  subsequent states
+  of the process.]: Evaluate $S$. $S$ may be evaluated by choosing a child state
+  using an rollout policy, e. g., randomly or a quick decision making unit
+  @alphago,
   until a terminal state which has a definitive value. Another method is an
-  evaluation function applied to $S$.
+  evaluation function applied to $S$ @alphagozero.
 + Backpropagation: Update the visit and win counts in the path from $S$ to $R$
   under consideration of
   the result from the evaluation.
 Through rigorous exploration of the tree by simulations, meaning, paths from root
-to terminal nodes, the child states most likely to maximise the evaluation
+to terminal nodes, the child states that most likely maximise the evaluation
 method are expected to converge to higher values in the selection method.
 
-The selection method commonly used in the selection phase is the "Upper
-Confidence Bound 1 applied to Trees" (UCT) @uct. It is used to find a balance
+A selection method commonly used in the selection phase is the "Upper
+Confidence Bound 1 applied to Trees" (UCT) @uct @alphago. It is used to find a balance
 between exploitation of well-simulated moves and exploration of under-explored
 moves in MCTS.
 In the selection stage, node $i$ with the highest value according to the
@@ -310,7 +426,7 @@ is selected, where
   is played,
 - $n_i$ is the number of times that $a_i$ was chosen during the simulations,
 - $N_i$ is the number of times that $s$ was part of the simulations,
-- $c$ is an exploration parameter. The higher the more explorative the move
+- $c$ is an exploration parameter. The higher $c$, the more explorative the move
   selection is.
 Since $sqrt((ln N_i)/n_i) approx infinity$, every move is tried out at least
 once.
@@ -320,7 +436,7 @@ The Probabilistic Upper Confidence Bound applied to Trees (PUCT) is a variant of
 UCT that incorporates prior estimations on the goodness of the actions of a state
 @alphagozero.
 These evaluations are typically provided
-by predictors like a neural network or a domain-specific heuristics.
+by predictors like a neural network or domain-specific heuristics.
 
 It uses a different uncertainty calculation:
 $ U(s,a)=c_"puct" dot P(s,a) dot sqrt(N_i)/(1+n_i), $
@@ -330,144 +446,15 @@ where
   predictor.
 
 A fundamental change is that
-$sqrt((ln N_i) / n_i) != sqrt(N_i)/(1+n_i)$ because it is
-accepted that not every possible move in $s$ is tried out. Furthermore,
-$ln(N_i)$ asymptotically approaches a maximum, in comparison, $sqrt(N_i)$ keeps
-growing.
+$sqrt((ln N_i) / n_i) != sqrt(N_i)/(1+n_i)$ because, with PUCT, it is
+accepted that not every possible move in $s$ is tried out as it already relies
+on existing information. Furthermore,
+// $ln(N_i)$ asymptotically approaches a maximum, in comparison, $sqrt(N_i)$ keeps
+// growing.
 
-== Kendall Rank Correlation Coefficient
-The Kendall Rank Correlation Coefficient (KRCC) is a tool to
-calculate the similarity of the same type of objects @rankcorrelation. 
-In the context of this thesis, objects are the predictor network's move
-probability distribution $bold("p")$ and MCTS' node frequency distribution
-$bold(pi)$. Positions
-within these distributions are always examined together.
-In the implementation used in this thesis, all positions are iterated through
-being compared to all following positions. A pair of positions is concordant if
-both distributions agree either that $bold("p")_i <
-bold("p")_j$ and $bold(pi)_i < bold(pi)_j$ or that $bold("p")_i > bold("p")_j$ 
-and $bold(pi)_i > bold(pi)_j$.
-Since equal values are also possible, this thesis uses specifially $tau_b$. In 
-that case, 
-a pair is tied if $bold("p")_i = bold("p")_j$ or $bold(pi)_i = bold(pi)_j$,
-both may occur at the same time.
-Otherwise, the pair is said to be discordant.
-The formula is
-$ tau_B = (n_c - n_d) / sqrt((n_0 - n_1) (n_0 - n_2)), $
-where
-- $n_0$ is the sum of all pairs, $n_0 = n(n-1) \/ 2$,
-- $n_1$ is the sum of tied values in $bold("p")$, $n_1 = sum_i t_i (t_i - 1)/2$,
-- $t_i$ is the number of tied values containing the $i$-th unique value,
-- $n_2$ is the sum of tied values in $bold(pi)$, $n_1 = sum_j u_j (t_j - 1)/2$,
-  and 
-- $u_j$ is the number of tied values containing the $j$-th unique value.
+== AlphaGo
 
-
-
-
-
-
-== Elo
-The Elo rating system is used to rank players of games such as Go and Chess. It
-considers the likelihood of one player to win over their opponent @elo.
-The central formulas are
-$ E_A = 1 / (1+10^((R_B-R_A)/400)), $
-which calculates the expected result of player $A$ with rating $R_A$ against
-player $B$ with rating $R_B$, and
-$ R'_A = R_A + K dot (S_A-E_A), $
-which updates the ranking of player $A$. $S_A$ is the actual result and can be
-$1$ for a win, $0.5$ for a draw, and $0$ for a loss. $K$ scales the rating
-adjustment.
-Established players are attributed a lower factor to stabilize rankings, whereas 
-newer
-players have a higher factor to allow rankings to converge more quickly to real
-ranking.
-
-Elo points can give an intuition on how likely one player is to win over the
-other. For example, player $A$ with $400$ points more
-than his opponent $B$ in the Elo system
-should win $10$ games out of $11$ because from $R_B-R_A=-400$ follows 
-$1/(1+10^(-1))=91%$.
-
-
-
-
-
-
-= Previous work
-== Pre-deep Learning
-
-=== Before MCTS
-
-Early Go programs were usually rule-based and used pattern
-recognition combined with heuristic evaluation functions and search
-to find hard-coded patterns and choose actions based on the results.
-
-One such program is "The Many Faces of Go" that was using a large compilation of
-rules and an influence function @manyfaces_patterns.  It was competing
-successfully in Computer Go
-championships in 1998-2002. It was widely considered one of best Go programs of
-the time @computer_go. At the time, it reported online online strength
-estimates at 8 kyu.
-It has since been continuously improved and made to
-embrace new technologies until the introduction of Deep Learning @manyfaces_mcts.
-
-A freely consultable open-source program of the time that 
-also works based on
-rules and pattern-recognition is GnuGo @gnugo. Simplified within the pipeline,
-GnuGo first analyses the board
-for its state, examines groups, their life-and-death, and their relation to one
-another. Next, it generates the moves, and lastly evaluates the moves for its
-effect on influence and territory. The move with the highest score is
-played.
-
-
-
-
-=== After MCTS
-
-Earlier Go programs were found to perform well in specific parts of the game like
-life-and-death problems or local tactical analysis @computer_go. However they
-were unable to play a complete game well or even better than amateur players.
-Programs of this level of sophistication could not achieve the same level of
-success
-for Go as for chess, because the computational search for Go is drastically
-different. While it is not the only factor, the state-space is much larger on a
-large board,
-$3^(19 times 19) approx 10^170$ of which $1.2%$ are legal. However, Go on a 
-9 #math.times 9-board has a
-similar a branching factor to chess and has proved equally as difficult as Go on
-a large board. This is due to static position evaluation requiring a large 
-amount
-of local auxiliary computations. Additionally, in order to find legal moves, the
-recent history of the game has to be contained within the state information 
-to account
-for special rules such as Ko that forbid repetition.
-
-As the typical game is also much longer than in chess, MCTS is a tool better 
-suited to explorations because it is capable of a more
-dynamical approach @mcts. Furthermore, short-term profit may often be outpaced by an
-opponent's stronger tactical play. With the introduction of MCTS into the field
-of Computer Go, programs became
-improved significantly. 
-
-In Go on a 9 #math.times 9-board, a 5 dan professional player was
-beaten by MoGo in 2007; in 2009, a 9 dan professional by Fuego @mogo. In the course of
-pure MCTS applied to Go on a 19 #math.times 19-board, various models managed to
-defeat high-ranking professional players, albeit with up to 9 handicap stones,
-and gained a ranking of 4 dan on online play.
-
-
-
-
-
-== Deep Learning
-
-
-=== AlphaGo
-
-The AlphaGo-algorithm is a complex system of CNNs, MCTS, supervised
-learning (SL), and RL @alphago. 
+The AlphaGo-algorithm is a complex system of CNNs, MCTS, SL, and RL @alphago. 
 SL policy network $p_sigma$ and SL sample network $p_pi$ were trained from a
 database of expert-level moves. $p_pi$ was trained to accurately predict human
 moves. $p_pi$ was designed to quickly sample actions during the rollout in the
@@ -476,7 +463,7 @@ optimize the outcome of self-play. The RL value network $v^p(s)$ predicts the
 outcome using policy $p$.
 
 *Supervised learning*. The first policy network$p_pi(a|s)$ receives as input a
-board representation $s$ and gives out movej a probability distribution over all
+board representation $s$ and returns a move probability distribution over all
 legal moves $a$. It optimizes the selection of action $a$, given $s$, using
 stochastic gradient descent according to $Delta sigma prop frac(delta log
 p_(sigma)(a|s), sigma)$. 
@@ -487,7 +474,7 @@ with policy gradient reinforcement learning. It also outputs a probability
 distribution over all legal moves $a$. Self-play is done with a current
 and a random previous iteration of the network. The reward function is zero for
 all non-terminal time steps and either $+1$ or $-1$ for winning and losing,
-respetively. The loss is thus $Delta rho prop frac(delta log p_(rho)(a_t|s_t),
+respectively. The loss is thus $Delta rho prop frac(delta log p_(rho)(a_t|s_t),
 rho)z_t$.#linebreak()
 The value function $v^p(s)$ approximates the perfect play $p^*(s)$ using the best
 available policy $p$ from $p_rho$ to $v^p(s)=EE[z_t|s_t=s,a_(t...T)~p]$. The
@@ -502,7 +489,8 @@ $Q(s,a)$, visit count $N(s,a)$, and prior probability $P(s,a)$. The tree is
 traversed by selection of a child at time step $t$ by
 $ a_t = op("argmax", limits: #true)_(a)(Q(s_t, a) + u(s_t, a)) $
 with a bonus $ u(s,a) prop frac(P(s,a),1+N(s,a)) $ which encourages exploration
-by disfavouring much-visited edges.
+by disfavouring much-visited edges as $1+N(s,a)$ increases and the fraction
+decreases.
 
 A leaf node $L$ is processed once by $p_pi$ which outputs the prior
 probabilities $P(a|s)=p_(pi)(a|s)$. $v_theta(s_L)$ and $p_sigma(s_L)$#check[] are used to generate
@@ -519,7 +507,7 @@ $
 where $s_L^i$ is the leaf node $L$ in the $i$th simulation. $1(s, a, i)$ shows
 whether that node was visited in the $i$th iteration.
 
-=== AlphaGo Zero
+== AlphaGo Zero
 AlphaGo Zero represents a significant improvement over its predecessor,
 achieving better performance through a more efficient architecture @alphagozero. By
 eliminating the need for human expert data, it masters the game entirely through
@@ -567,7 +555,152 @@ rotating the board and thus generating more valid game positions.
 
 
 
+
+== Kendall Rank Correlation Coefficient
+The Kendall Rank Correlation Coefficient (KRCC) is a tool to
+calculate the similarity of the same type of objects @rankcorrelation. 
+In the context of this thesis, objects are AlphaGo Zero's predictor network's 
+move probability distribution $bold("p")$ and 
+MCTS' node frequency distribution
+$bold(pi)$. Positions
+within these distributions are always examined together.
+In the implementation used in this thesis, all positions are iterated 
+and compared to all following positions. A pair of positions is concordant if
+both distributions agree either that $bold("p")_i <
+bold("p")_j$ and $bold(pi)_i < bold(pi)_j$ or that $bold("p")_i > bold("p")_j$ 
+and $bold(pi)_i > bold(pi)_j$.
+This thesis uses specifially KRCC's variant $tau_b$ because equal values 
+are possible in either
+move probability distribution. 
+In that case, 
+a pair is tied if $bold("p")_i = bold("p")_j$ or $bold(pi)_i = bold(pi)_j$,
+both may occur at the same time.
+Otherwise, the pair is said to be discordant.
+The formula is
+$ tau_B = (n_c - n_d) / sqrt((n_0 - n_1) (n_0 - n_2)), $
+where
+- $n_0$ is the sum of all pairs, $n_0 = n(n-1) \/ 2$,
+- $n_1$ is the sum of tied values in $bold("p")$, $n_1 = sum_i t_i (t_i - 1)/2$,
+- $t_i$ is the number of tied values containing the $i$-th unique value,
+- $n_2$ is the sum of tied values in $bold(pi)$, $n_1 = sum_j u_j (t_j - 1)/2$,
+  and 
+- $u_j$ is the number of tied values containing the $j$-th unique value.
+
+
+
+
+
+
+== Elo
+The Elo rating system is used to rank players of games such as Go and Chess. It
+considers the likelihood of one player to win over their opponent @elo.
+The central formulas are
+$ E_A = 1 / (1+10^((R_B-R_A)/400)), $
+which calculates the expected result of player $A$ with rating $R_A$ against
+player $B$ with rating $R_B$, and
+$ R'_A = R_A + K dot (S_A-E_A), $
+which updates the ranking of player $A$. $S_A$ is the actual result and can be
+$1$ for a win, $0.5$ for a draw, and $0$ for a loss.
+Established players are attributed a lower factor $K$ to stabilize rankings, 
+whereas newer
+players have a higher factor $K$ to allow rankings to converge more 
+quickly to their real ranking by increasing the gained points' coefficient.
+
+Elo points can give an intuition on how likely one player is to win over the
+other. For example, player $A$ with $400$ points more
+than his opponent $B$ in the Elo system
+should win $10$ games out of $11$ because from $R_B-R_A=-400$ follows 
+$1/(1+10^(-1))=91%$.
+
+
+
+
+
+
+= Historical Evolution
+== Before Deep Learning
+
+=== Before MCTS
+
+Early Go programs were usually rule-based and used pattern
+recognition combined with heuristic evaluation functions and search
+to find hard-coded patterns and choose actions based on the results.
+
+One such program is "The Many Faces of Go" that was using a large compilation of
+rules and an influence function @manyfaces_patterns.  It was competing
+successfully in Computer Go
+championships in 1998-2002. It was widely considered one of the best 
+Go programs of
+the time @computer_go. At the time, it reported online strength
+estimates at 8 kyu.
+It has since been continuously improved and made to
+embrace new technologies until the introduction of deep learning @manyfaces_mcts.
+
+A freely consultable open-source program of the time that 
+also works based on
+rules and pattern-recognition is GnuGo @gnugo. Shortly, within the pipeline,
+GnuGo first analyses the board
+for its state, examines groups, their life-and-death, and their relation to one
+another. Next, it generates the moves, and lastly evaluates the moves for its
+effect on influence and territory. The move with the highest score is
+played.
+
+
+
+
+=== After MCTS
+
+Earlier Go programs were found to perform well in specific parts of the game like
+life-and-death problems or local tactical analysis @computer_go. However they
+were unable to play a complete game well or even better than amateur players.
+Programs of this level of sophistication could not achieve the same level of
+success
+for Go as for chess, because the computational search for Go is drastically
+different. While it is not the only factor, the state-space is much larger on a
+large board,
+$3^(19 times 19) approx 10^170$ of which $1.2%$ are legal. However, Go on a 
+9 #math.times 9-board has a
+similar branching factor to chess and has proved equally as difficult as Go on
+a large board. This is due to static position evaluation requiring a large 
+amount
+of local auxiliary computations. Additionally, in order to find legal moves, the
+recent history of the game has to be contained within the state information 
+to account
+for special rules such as Ko that forbid repetition.
+
+As the typical game is also much longer than in chess, MCTS is a tool better 
+suited to explorations because it is capable of a more
+dynamical approach @mcts. Furthermore, short-term profit may often be outpaced by an
+opponent's stronger tactical play. With the introduction of MCTS into the field
+of Computer Go, programs became
+improved significantly. 
+
+In Go on a 9 #math.times 9-board, a 5 dan professional player was
+beaten by MoGo in 2007; in 2009, a 9 dan professional by Fuego @mogo. In the course of
+pure MCTS applied to Go on a 19 #math.times 19-board, various models managed to
+defeat high-ranking professional players, albeit with up to 9 handicap stones,
+and gained a ranking of 4 dan on online play.
+
+
+
+
+
+== Deep Learning
+
 === AlphaZero
+
+=== The Alpha-Models
+There are multiple named versions of AlphaGo, each with their own achievements.
+"AlphaGo Fan", which was the program to win against a human professional on a $9
+times 9$ board, won $5$-nil @alphago. "AlphaGo Lee Sedol" won against 
+Lee Sedol with a
+record of $4-1$. The last iteration, "AlphaGo Master", won against top human 
+professionals in online games with a record of $60-0$ alphagozero. 
+When these models were 
+compared to AlphaGo Zero, their
+Elo ratings were $3,144$, $3,739$, and $4,858$, respectively. AlphaGo Zero
+received a rating of $5,158$ alphagozero.
+
 AlphaZero is another iteration on this self-play algorithm @alphazero. While ultimately the
 same structure as AlphaGo Zero, the domain-specific optimisation that Go is
 rotationally invariable is removed which reduces the amount of data of data
@@ -575,17 +708,6 @@ available for this game.
 
 AlphaZero managed to beat state-of-the-art models in chess (Stockfish), shogi
 (Elmo), and Go (AlphaGo Zero).
-
-=== The Alpha-Models
-There are multiple named versions of AlphaGo, each with their own achievements.
-AlphaGo Fan, which was the program to win against a human professional on a $9
-times 9$ board, won $5$-nil @alphago. AlphaGo Lee Sedol won against Lee Sedol with a
-record
-of $4-1$. The last iteration, AlphaGo Master, won against top human 
-professionals in online games with a record of $60-0$ alphagozero. When these models were 
-compared to AlphaGo Zero, their
-Elo ratings were $3,144$, $3,739$, and $4,858$, respectively. AlphaGo Zero
-received a rating of $5,158$ alphagozero.
 
 
 === MuZero
@@ -599,29 +721,34 @@ professionals.
 
 === Gumbel AlphaZero
 Google DeepMind's successor model, Gumbel AlphaZero, breaks from traditional
-MCTS using UCB or variants, and
+MCTS using UCB , the basis for UCT @uct, or variants, and
 instead makes use of other policy improvement strategies @gumbelzero.
-One such strategy is Sequential Halving.
+One such strategy is sequential halving, in which the window of considered moves
+is halved considering from the highest-rated moves.
 
 === KataGo
 KataGo represents a significant step to the wider Computer Go community @katago. 
 While
-similarly strong models such as FineArt exist, KataGo is one the few open-source 
-models.
+similarly strong models such as FineArt, a proprietary Chinese model, or
+LeelaZero, a "fairly faithful reimplementation" of the original AlphaGo Zero
+model @leelazero, exist, 
+KataGo is an open-source 
+model employing additional strategies.
 Improving on the architecture and
 process of AlphaZero, KataGo introduces and publicly explains several
 domain-dependent and -independent additions to improve efficiency,
 flexibility, and utility for human analysis.
 
 Some of these features include:
-- Auxiliary Policy Targets: In addition to simply predicting the best move for
+- Auxiliary policy targets: In addition to simply predicting the best move for
   the current board position, KataGo also predicts the opponent's move.
-- Playout Cap Randomisation: Most board positions are searched with a low number
-  of simulations and only used to train the value head. Long playouts are then
+- Playout cap randomisation: Most board positions are searched with a low number
+  of simulations and only used to train the value head, the head that evaluates
+  the likely winner of the position. Long playouts are then
   used for policy training.
-- Blocking Overplay: Forbidding playing in a certain region after a number of
+- Blocking overplay: Forbidding playing in a certain region after a number of
   moves contributes in efficiency, albeit little in regard to performance.
-- Auxiliary Ownership and Score Targets: The network also predicts to whom an
+- Auxiliary ownership and score targets: The network also predicts to whom an
   intersection belongs as well as a estimations of the point difference at the
   end of the game.
 
@@ -642,6 +769,7 @@ Some of these features include:
 //   self-play training, mitigating the high failure rate of agents starting with
 //   purely random weights.
 
+= Previous Work
 ==== Dynamic MCTS
 Forming a basis for this thesis, Lan et al. introduced
 estimations of uncertainty at intervals during training, to determine whether
@@ -657,7 +785,7 @@ move has been found, search should terminate.
 A $9 times 9$ board has a state-space complexity of $3^81 approx 4 times 10^38$,
 of which $23.43% approx 1.04 * 10 ^ 38$ @combinatorics
 are legal. 
-In contrast, a $19 times 19$ board has $3*(19 times 19) approx 1.74 * 10^172$ 
+In contrast, a $19 times 19$ board has $3^(19 times 19) approx 1.74 * 10^172$ 
 possible positions and $2.082 times 10^170$
  legal positions . Thus,
 in order to gain comprehensive results within the hardware and temporal limits
@@ -675,26 +803,9 @@ modifications within such a system can be difficult, since performance gains may
 arise from interactions with existing components rather than the modification
 itself. 
 
-Similarly, improvements 
-
-
-To achieve this level, KataGo is highly optimised 
-using a multitude of methods,
-including those above @katago. Introducing a new heuristic, 
-it is difficult to determine
-whether resulting performance is due to the heuristic 
-itself or its interaction
-with one or more of KataGo's many existing optimisations. 
-Furthermore, the
-codebase includes and is highly optimised for a variety of use-cases. This
-includes training on multiple machines, the optimisations explained above, and
-generalisability to multiple board sizes. This combines to a complex 
-codebase
-that introduces unnecessary complications into the development process. 
-
 Despite the relative successes of the Gumbel models compared to their PUCT-based
 predecessors @gumbelzero, the PUCT-based models remain the most widely employed
-approach in the popular Go models @katago.
+approach in popular Go models @katago.
 
 
 
@@ -709,34 +820,35 @@ support for the game Go.
 
 OpenSpiel's AlphaZero implementation is entirely written in C++. It uses
 OpenSpiel's custom MCTS implementation and Meta's ML-library LibTorch. The
-9 #math.times 9 Go environment in OpenSpiel follows standard Tromp-P Taylor 
+9 #math.times 9-Go environment in OpenSpiel follows standard Tromp-P Taylor 
 rules.
 
 
 === Computational Resources: University HPC Cluster
 
 Due to the high computational cost of self-play reinforcement learning, all
-training and evaluation experiments were conducted on the University’s
+training and evaluation experiments were conducted on Osnabrück University’s
 High-Performance Computing (HPC) Cluster.
 ==== Hardware Configuration
 
-The cluster provides a distributed environment optimized for deep learning. The specific resources allocated for this project include:
-
-- Compute Nodes: Training was distributed across [X] nodes, each equipped with
-  [Y] CPU cores (e.g., AMD EPYC or Intel Xeon) to handle the parallel MCTS
-  simulations.
-
-- Accelerators: Neural network training and inference during self-play were
-  accelerated using NVIDIA [Model,e.g.,A100/V100] GPUs, providing the necessary
-  TFLOPS for high-throughput batch processing.
-
-- Memory: Each node provided [Z] GB of RAM to maintain large MCTS search trees
-  and experience replay buffers.
+// The cluster provides a distributed environment optimized for deep learning. The
+// specific resources allocated for this project include:
+//
+// - Compute Nodes: Training was distributed across [X] nodes, each equipped with
+//   [Y] CPU cores (e.g., AMD EPYC or Intel Xeon) to handle the parallel MCTS
+//   simulations.
+//
+// - Accelerators: Neural network training and inference during self-play were
+//   accelerated using NVIDIA [Model,e.g.,A100/V100] GPUs, providing the necessary
+//   TFLOPS for high-throughput batch processing.
+//
+// - Memory: Each node provided [Z] GB of RAM to maintain large MCTS search trees
+//   and experience replay buffers.
 
 
 == Heuristics
 The heuristics suggested here are based on the idea, that the prior is able to
-epxress an inherent certainty that can be leveraged to adjust
+express an inherent certainty that can be leveraged to adjust
 the amount of simulation needed to generate a successful training sequence while
 lowering the computational efforts.
 
@@ -752,7 +864,8 @@ probabilities. The use of the entropy is therefore an apparent possible solution
 to the goal of this thesis. Furthermore, using the $2$ likeliest options of a
 probability
 distribution is a common approach to gather a measure of certainty of that
-distribution. 
+distribution. Increasing this window of consideration should give a more
+balanced view.
 
 The important formulas are
 $ H_"norm" = frac(H("Top"k),ln(k)), $
@@ -773,7 +886,8 @@ The graph is maximised at $frac(2,
 1+e^(-8(1-0.5))) approx 1.964$ 
 and, because $H$ is
 normalised, it is minimised at $frac(2, 1+e^(-8(0-0.5))) approx 0.036$.
-This should allow the entropy of the $k$ highest-rated to transition
+These values should allow the entropy of the $k$ highest-rated moves
+to transition
 fluidly around the inflection point at $0.5$. 
 
 #figure(
@@ -794,7 +908,7 @@ fluidly around the inflection point at $0.5$.
   caption: [Logistical uncertainty function]
 ) <log_graph>
 
-Effort for this heuristic should be near negligible. The algorithmic complexity
+Effort for this heuristic should be negligible. The algorithmic complexity
 of finding the highest-sorted  $"O"(|A| dot log k)$, with $|A|$ as the space of
 all actions. There also is the additional cost of calculating the entropy of
 $"Top"k$.
@@ -815,9 +929,9 @@ moves and the $A-k$ lowest-rated moves. Using this distance,
 the number of simulations is adjusted.
 
 The above heuristic has a strong focus on relatively few high-rated moves
-compared to the overall space of possible moves. This increases vulnerablity to
+compared to the overall space of possible moves. This increases vulnerability to
 overconfidence where it is not warranted. That is especially the case when a
-single over is disproportionately well-rated. Therefore, one solution to this
+single move is disproportionately well-rated. Therefore, one solution to this
 problem can be
 a more global consideration of the move probability space.
 
@@ -839,14 +953,6 @@ log k)$ and the addition. Therefore the effort should be about as much as for
 the first heuristic.
 
 Differences in $k$ here will also be discussed in a later section.
-
-
-
-
-
-
-
-
 
 
 
@@ -900,24 +1006,22 @@ computational cost of calculating the KRCC for the two distributions. One
 solution is to similarly to the above heuristics consider only the highest $k$
 actions. This is also looked at in the following sections.
 
-
-
-
 === Random
-Following the example of Wu et al., a uniformly chosen number from $n in [1,
+Following the example of Wu et al. @katago, a uniformly chosen number from $n in [1,
 #max_number]$ will be used as the number of playouts for MCTS
 in order to investigate in comparison whether these
 strategies actually fulfill their purpose
-and have an active part in lowering computational effort. If this
-performs equally well as the strategies suggested above and assuming that they
+and have an active part in lowering computational effort. If randomly adjusting
+the amount of simulations for MCTS
+performed equally well as the strategies suggested above and assuming that they
 all perform similarly well to the base line model, this would
-suggest that these strategies constitute unnecessary computational effort.
+suggest that the strategies constitute unnecessary computational effort.
 
 == Evaluation
-After the models are trained, they play against each other #fill[certain amount
-of games] to evaluate playing strength. To further evaluate ability, the
-BayesElo-algorithm will be
-used. #fill[or #(math.alpha)-Rank] The models also record the number of
+After the models are trained, they play against each other 50
+to evaluate playing strength. To further evaluate ability, the
+Elo-system @elo will be
+used. The models also record the number of
 simulations executed from MCTS during training as well as test-play to enable
 comparisons between computational effort spent.
 As a method of comparing the efficiency of models, the following formula may
@@ -926,17 +1030,13 @@ $ S E = (Delta "Elo") / (Delta "Simulations") $
 
 = Experiments
 == Tuning Hyperparameters
-For each heuristic, the size of the window of consideration may play
-a significant role 
-in the performance of the model and effort of the heuristic. Therefore, to
-find a balance between performance and effort, $k in {2,5,10}$ are trained for
-each heuristic and compared to performance.
+Similarly, since the effort to calculate KRCC can be great, limiting the window
+of consideration to the most likely moves for the
+last heuristic in calculating the loss may also improve efficiency while
+upholding the level of performance.
 
-Similarly, limiting the window of consideration to the most likely moves for the
-last heuristic may also 
-
-For the first three heuristics, $k$ may play a huge role in accuracy and effort.
-Therefore, to find a good $k$, these approaches are first run with $a in
+As the performance and effort for the first three heuristics may largely depend
+on finding an appropriate $k$, these approaches are first run with $a in
 {2,5,10}$. The models will be given 12 hours to train and are conclusively
 compared. The hyperparameter with the best performance will be continued to be
 used throughout the other experiments.
@@ -949,22 +1049,6 @@ used throughout the other experiments.
 //
 // == Using Heuristics in Play
 
-== Forced Maximal Number Simulations
-Wu et al. noticed that using fewer simulations is permissible as long as there 
-are correcting playouts of sufficient length to correct the gradient of 
-learning. However, KataGo unilaterally cuts of exploration of a board position
-after the lowered number of simulations during most board searches. The
-heuristics proposed here aim at precisely that point at which further
-exploration of the state
-becomes less useful than exploring the next state.
-
-== Pruning Superfluous Child Nodes
-Previous results show improved performance by pruning unnecessary nodes so that
-nodes of a higher probability can be more rigorously tested. This might prove
-especially useful in the use cases of these heuristics that put a lower limit on
-available simulations.
-
-== Warm-up
 
 
 = Discussion

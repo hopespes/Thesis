@@ -428,3 +428,8 @@ openspiel:
     title: CoRR
     volume: abs/1908.09453
   url: http://arxiv.org/abs/1908.09453
+
+leelazero:
+  type: repository
+  title: "Leela-zero"
+  url: https://github.com/leela-zero/leela-zero
