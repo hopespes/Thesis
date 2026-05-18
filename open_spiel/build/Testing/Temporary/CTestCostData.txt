@@ -1,0 +1,62 @@
+best_response_test 2 0.22061
+deterministic_policy_test 2 0.217031
+evaluate_bots_test 2 3.85513
+get_all_states_test 2 1.3978
+get_legal_actions_map_test 2 0.210873
+history_tree_test 2 7.8007
+minimax_test 2 0.205194
+tabular_exploitability_test 2 1.67877
+torch_model_test 1 5.92818
+torch_vpnet_test 1 358.282
+vanilla_torch_model_test 1 5.53074
+vanilla_torch_vpnet_test 1 393.983
+rl_torch_model_test 2 4.12376
+rl_torch_vpnet_test 2 213.272
+human_bot_test 2 0.298547
+soft_condorcet_optimization_test 2 0.294937
+elo_test 2 0.191345
+chess_test 2 14.3875
+clobber_test 2 1.5186
+go_test 2 0.893314
+sgf_game_loader_test 2 0.893149
+efg_game_test 2 2.39936
+goofspiel_test 2 1.61409
+kuhn_poker_test 2 0.700854
+liars_dice_test 2 0.392839
+matching_pennies_3p_test 2 0.274304
+oh_hell_test 2 1.06459
+repeated_leduc_poker_test 2 1.00442
+pig_test 2 8.30663
+tic_tac_toe_test 2 0.384958
+restricted_nash_response_test 0 0
+turn_based_simultaneous_game_test 2 0.568372
+misere_test 2 0.560548
+add_noise_test 2 0.259809
+cached_tree_test 2 7.51314
+coop_to_1p_test 0 0
+efg_writer_test 2 4.49395
+normal_form_extensive_game_test 0 0
+repeated_game_test 0 0
+start_at_test 2 0.256306
+zerosum_test 2 0.546168
+circular_buffer_test 2 0.114614
+combinatorics_test 2 0.109796
+data_logger_test 2 0.173555
+file_test 2 0.164932
+functional_test 2 0.169962
+json_test 2 0.163985
+logger_test 2 0.160659
+lru_cache_test 2 0.12416
+random_test 2 0.121034
+serializable_circular_buffer_test 2 0.117432
+sgf_reader_test 2 0.220023
+stats_test 2 0.111237
+tensor_view_test 2 0.107204
+threaded_queue_test 2 0.213797
+spiel_test 2 13.5331
+action_view_test 2 0.141624
+---
+restricted_nash_response_test
+coop_to_1p_test
+normal_form_extensive_game_test
+repeated_game_test
