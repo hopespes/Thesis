@@ -53,7 +53,7 @@ ABSL_FLAG(int, replay_buffer_size, 1 << 16,
           "How many states to store in the replay buffer.");
 ABSL_FLAG(double, replay_buffer_reuse, 3,
           "How many times to reuse each state in the replay buffer.");
-ABSL_FLAG(int, checkpoint_freq, 100, "Save a checkpoint every N steps.");
+ABSL_FLAG(int, checkpoint_freq, 10, "Save a checkpoint every N steps.");
 ABSL_FLAG(int, max_simulations, 300, "How many simulations to run.");
 ABSL_FLAG(int, train_batch_size, 1 << 10,
           "How many states to learn from per batch.");

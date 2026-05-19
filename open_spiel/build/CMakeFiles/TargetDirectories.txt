@@ -227,6 +227,12 @@
 /home/aplax/School/Thesis/open_spiel/build/algorithms/simple/rl_alpha_zero_torch/CMakeFiles/test.dir
 /home/aplax/School/Thesis/open_spiel/build/algorithms/simple/rl_alpha_zero_torch/CMakeFiles/edit_cache.dir
 /home/aplax/School/Thesis/open_spiel/build/algorithms/simple/rl_alpha_zero_torch/CMakeFiles/rebuild_cache.dir
+/home/aplax/School/Thesis/open_spiel/build/algorithms/simple/random_alpha_zero_torch/CMakeFiles/random_alpha_zero_torch.dir
+/home/aplax/School/Thesis/open_spiel/build/algorithms/simple/random_alpha_zero_torch/CMakeFiles/random_torch_model_test.dir
+/home/aplax/School/Thesis/open_spiel/build/algorithms/simple/random_alpha_zero_torch/CMakeFiles/random_torch_vpnet_test.dir
+/home/aplax/School/Thesis/open_spiel/build/algorithms/simple/random_alpha_zero_torch/CMakeFiles/test.dir
+/home/aplax/School/Thesis/open_spiel/build/algorithms/simple/random_alpha_zero_torch/CMakeFiles/edit_cache.dir
+/home/aplax/School/Thesis/open_spiel/build/algorithms/simple/random_alpha_zero_torch/CMakeFiles/rebuild_cache.dir
 /home/aplax/School/Thesis/open_spiel/build/bots/CMakeFiles/bots.dir
 /home/aplax/School/Thesis/open_spiel/build/bots/CMakeFiles/test.dir
 /home/aplax/School/Thesis/open_spiel/build/bots/CMakeFiles/edit_cache.dir
@@ -243,6 +249,8 @@
 /home/aplax/School/Thesis/open_spiel/build/evaluation/CMakeFiles/rebuild_cache.dir
 /home/aplax/School/Thesis/open_spiel/build/experiments/CMakeFiles/vanilla_alpha_zero_torch_training.dir
 /home/aplax/School/Thesis/open_spiel/build/experiments/CMakeFiles/compare.dir
+/home/aplax/School/Thesis/open_spiel/build/experiments/CMakeFiles/random_alpha_zero_torch_training.dir
+/home/aplax/School/Thesis/open_spiel/build/experiments/CMakeFiles/rl_alpha_zero_torch_training.dir
 /home/aplax/School/Thesis/open_spiel/build/experiments/CMakeFiles/top_2_alpha_zero_torch_training.dir
 /home/aplax/School/Thesis/open_spiel/build/experiments/CMakeFiles/top_5_alpha_zero_torch_training.dir
 /home/aplax/School/Thesis/open_spiel/build/experiments/CMakeFiles/top_10_alpha_zero_torch_training.dir

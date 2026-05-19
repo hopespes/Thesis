@@ -1622,6 +1622,45 @@ rl_torch_vpnet_test/fast:
 .PHONY : rl_torch_vpnet_test/fast
 
 #=============================================================================
+# Target rules for targets named random_alpha_zero_torch
+
+# Build rule for target.
+random_alpha_zero_torch: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 random_alpha_zero_torch
+.PHONY : random_alpha_zero_torch
+
+# fast build rule for target.
+random_alpha_zero_torch/fast:
+	$(MAKE) $(MAKESILENT) -f algorithms/simple/random_alpha_zero_torch/CMakeFiles/random_alpha_zero_torch.dir/build.make algorithms/simple/random_alpha_zero_torch/CMakeFiles/random_alpha_zero_torch.dir/build
+.PHONY : random_alpha_zero_torch/fast
+
+#=============================================================================
+# Target rules for targets named random_torch_model_test
+
+# Build rule for target.
+random_torch_model_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 random_torch_model_test
+.PHONY : random_torch_model_test
+
+# fast build rule for target.
+random_torch_model_test/fast:
+	$(MAKE) $(MAKESILENT) -f algorithms/simple/random_alpha_zero_torch/CMakeFiles/random_torch_model_test.dir/build.make algorithms/simple/random_alpha_zero_torch/CMakeFiles/random_torch_model_test.dir/build
+.PHONY : random_torch_model_test/fast
+
+#=============================================================================
+# Target rules for targets named random_torch_vpnet_test
+
+# Build rule for target.
+random_torch_vpnet_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 random_torch_vpnet_test
+.PHONY : random_torch_vpnet_test
+
+# fast build rule for target.
+random_torch_vpnet_test/fast:
+	$(MAKE) $(MAKESILENT) -f algorithms/simple/random_alpha_zero_torch/CMakeFiles/random_torch_vpnet_test.dir/build.make algorithms/simple/random_alpha_zero_torch/CMakeFiles/random_torch_vpnet_test.dir/build
+.PHONY : random_torch_vpnet_test/fast
+
+#=============================================================================
 # Target rules for targets named bots
 
 # Build rule for target.
@@ -1711,6 +1750,32 @@ compare: cmake_check_build_system
 compare/fast:
 	$(MAKE) $(MAKESILENT) -f experiments/CMakeFiles/compare.dir/build.make experiments/CMakeFiles/compare.dir/build
 .PHONY : compare/fast
+
+#=============================================================================
+# Target rules for targets named random_alpha_zero_torch_training
+
+# Build rule for target.
+random_alpha_zero_torch_training: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 random_alpha_zero_torch_training
+.PHONY : random_alpha_zero_torch_training
+
+# fast build rule for target.
+random_alpha_zero_torch_training/fast:
+	$(MAKE) $(MAKESILENT) -f experiments/CMakeFiles/random_alpha_zero_torch_training.dir/build.make experiments/CMakeFiles/random_alpha_zero_torch_training.dir/build
+.PHONY : random_alpha_zero_torch_training/fast
+
+#=============================================================================
+# Target rules for targets named rl_alpha_zero_torch_training
+
+# Build rule for target.
+rl_alpha_zero_torch_training: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rl_alpha_zero_torch_training
+.PHONY : rl_alpha_zero_torch_training
+
+# fast build rule for target.
+rl_alpha_zero_torch_training/fast:
+	$(MAKE) $(MAKESILENT) -f experiments/CMakeFiles/rl_alpha_zero_torch_training.dir/build.make experiments/CMakeFiles/rl_alpha_zero_torch_training.dir/build
+.PHONY : rl_alpha_zero_torch_training/fast
 
 #=============================================================================
 # Target rules for targets named top_2_alpha_zero_torch_training
@@ -2815,11 +2880,16 @@ help:
 	@echo "... oh_hell_test"
 	@echo "... open_spiel_core"
 	@echo "... pig_test"
+	@echo "... random_alpha_zero_torch"
+	@echo "... random_alpha_zero_torch_training"
 	@echo "... random_test"
+	@echo "... random_torch_model_test"
+	@echo "... random_torch_vpnet_test"
 	@echo "... repeated_game_test"
 	@echo "... repeated_leduc_poker_test"
 	@echo "... restricted_nash_response_test"
 	@echo "... rl_alpha_zero_torch"
+	@echo "... rl_alpha_zero_torch_training"
 	@echo "... rl_torch_model_test"
 	@echo "... rl_torch_vpnet_test"
 	@echo "... serializable_circular_buffer_test"

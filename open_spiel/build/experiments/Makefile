@@ -155,6 +155,34 @@ compare/fast:
 .PHONY : compare/fast
 
 # Convenience name for target.
+experiments/CMakeFiles/random_alpha_zero_torch_training.dir/rule:
+	cd /home/aplax/School/Thesis/open_spiel/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 experiments/CMakeFiles/random_alpha_zero_torch_training.dir/rule
+.PHONY : experiments/CMakeFiles/random_alpha_zero_torch_training.dir/rule
+
+# Convenience name for target.
+random_alpha_zero_torch_training: experiments/CMakeFiles/random_alpha_zero_torch_training.dir/rule
+.PHONY : random_alpha_zero_torch_training
+
+# fast build rule for target.
+random_alpha_zero_torch_training/fast:
+	cd /home/aplax/School/Thesis/open_spiel/build && $(MAKE) $(MAKESILENT) -f experiments/CMakeFiles/random_alpha_zero_torch_training.dir/build.make experiments/CMakeFiles/random_alpha_zero_torch_training.dir/build
+.PHONY : random_alpha_zero_torch_training/fast
+
+# Convenience name for target.
+experiments/CMakeFiles/rl_alpha_zero_torch_training.dir/rule:
+	cd /home/aplax/School/Thesis/open_spiel/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 experiments/CMakeFiles/rl_alpha_zero_torch_training.dir/rule
+.PHONY : experiments/CMakeFiles/rl_alpha_zero_torch_training.dir/rule
+
+# Convenience name for target.
+rl_alpha_zero_torch_training: experiments/CMakeFiles/rl_alpha_zero_torch_training.dir/rule
+.PHONY : rl_alpha_zero_torch_training
+
+# fast build rule for target.
+rl_alpha_zero_torch_training/fast:
+	cd /home/aplax/School/Thesis/open_spiel/build && $(MAKE) $(MAKESILENT) -f experiments/CMakeFiles/rl_alpha_zero_torch_training.dir/build.make experiments/CMakeFiles/rl_alpha_zero_torch_training.dir/build
+.PHONY : rl_alpha_zero_torch_training/fast
+
+# Convenience name for target.
 experiments/CMakeFiles/top_2_alpha_zero_torch_training.dir/rule:
 	cd /home/aplax/School/Thesis/open_spiel/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 experiments/CMakeFiles/top_2_alpha_zero_torch_training.dir/rule
 .PHONY : experiments/CMakeFiles/top_2_alpha_zero_torch_training.dir/rule
@@ -261,6 +289,54 @@ compare.s: compare.cc.s
 compare.cc.s:
 	cd /home/aplax/School/Thesis/open_spiel/build && $(MAKE) $(MAKESILENT) -f experiments/CMakeFiles/compare.dir/build.make experiments/CMakeFiles/compare.dir/compare.cc.s
 .PHONY : compare.cc.s
+
+random_alpha_zero_torch.o: random_alpha_zero_torch.cc.o
+.PHONY : random_alpha_zero_torch.o
+
+# target to build an object file
+random_alpha_zero_torch.cc.o:
+	cd /home/aplax/School/Thesis/open_spiel/build && $(MAKE) $(MAKESILENT) -f experiments/CMakeFiles/random_alpha_zero_torch_training.dir/build.make experiments/CMakeFiles/random_alpha_zero_torch_training.dir/random_alpha_zero_torch.cc.o
+.PHONY : random_alpha_zero_torch.cc.o
+
+random_alpha_zero_torch.i: random_alpha_zero_torch.cc.i
+.PHONY : random_alpha_zero_torch.i
+
+# target to preprocess a source file
+random_alpha_zero_torch.cc.i:
+	cd /home/aplax/School/Thesis/open_spiel/build && $(MAKE) $(MAKESILENT) -f experiments/CMakeFiles/random_alpha_zero_torch_training.dir/build.make experiments/CMakeFiles/random_alpha_zero_torch_training.dir/random_alpha_zero_torch.cc.i
+.PHONY : random_alpha_zero_torch.cc.i
+
+random_alpha_zero_torch.s: random_alpha_zero_torch.cc.s
+.PHONY : random_alpha_zero_torch.s
+
+# target to generate assembly for a file
+random_alpha_zero_torch.cc.s:
+	cd /home/aplax/School/Thesis/open_spiel/build && $(MAKE) $(MAKESILENT) -f experiments/CMakeFiles/random_alpha_zero_torch_training.dir/build.make experiments/CMakeFiles/random_alpha_zero_torch_training.dir/random_alpha_zero_torch.cc.s
+.PHONY : random_alpha_zero_torch.cc.s
+
+rl_alpha_zero_torch.o: rl_alpha_zero_torch.cc.o
+.PHONY : rl_alpha_zero_torch.o
+
+# target to build an object file
+rl_alpha_zero_torch.cc.o:
+	cd /home/aplax/School/Thesis/open_spiel/build && $(MAKE) $(MAKESILENT) -f experiments/CMakeFiles/rl_alpha_zero_torch_training.dir/build.make experiments/CMakeFiles/rl_alpha_zero_torch_training.dir/rl_alpha_zero_torch.cc.o
+.PHONY : rl_alpha_zero_torch.cc.o
+
+rl_alpha_zero_torch.i: rl_alpha_zero_torch.cc.i
+.PHONY : rl_alpha_zero_torch.i
+
+# target to preprocess a source file
+rl_alpha_zero_torch.cc.i:
+	cd /home/aplax/School/Thesis/open_spiel/build && $(MAKE) $(MAKESILENT) -f experiments/CMakeFiles/rl_alpha_zero_torch_training.dir/build.make experiments/CMakeFiles/rl_alpha_zero_torch_training.dir/rl_alpha_zero_torch.cc.i
+.PHONY : rl_alpha_zero_torch.cc.i
+
+rl_alpha_zero_torch.s: rl_alpha_zero_torch.cc.s
+.PHONY : rl_alpha_zero_torch.s
+
+# target to generate assembly for a file
+rl_alpha_zero_torch.cc.s:
+	cd /home/aplax/School/Thesis/open_spiel/build && $(MAKE) $(MAKESILENT) -f experiments/CMakeFiles/rl_alpha_zero_torch_training.dir/build.make experiments/CMakeFiles/rl_alpha_zero_torch_training.dir/rl_alpha_zero_torch.cc.s
+.PHONY : rl_alpha_zero_torch.cc.s
 
 top_10_alpha_zero_torch.o: top_10_alpha_zero_torch.cc.o
 .PHONY : top_10_alpha_zero_torch.o
@@ -440,6 +516,8 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... test"
 	@echo "... compare"
+	@echo "... random_alpha_zero_torch_training"
+	@echo "... rl_alpha_zero_torch_training"
 	@echo "... top_10_alpha_zero_torch_training"
 	@echo "... top_2_alpha_zero_torch_training"
 	@echo "... top_5_alpha_zero_torch_training"
@@ -450,6 +528,12 @@ help:
 	@echo "... compare.o"
 	@echo "... compare.i"
 	@echo "... compare.s"
+	@echo "... random_alpha_zero_torch.o"
+	@echo "... random_alpha_zero_torch.i"
+	@echo "... random_alpha_zero_torch.s"
+	@echo "... rl_alpha_zero_torch.o"
+	@echo "... rl_alpha_zero_torch.i"
+	@echo "... rl_alpha_zero_torch.s"
 	@echo "... top_10_alpha_zero_torch.o"
 	@echo "... top_10_alpha_zero_torch.i"
 	@echo "... top_10_alpha_zero_torch.s"

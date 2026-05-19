@@ -39,6 +39,7 @@
 		"/home/aplax/School/Thesis/open_spiel/build/algorithms/simple/top_bot_5_alpha_zero_torch/cmake_install.cmake",
 		"/home/aplax/School/Thesis/open_spiel/build/algorithms/simple/top_bot_10_alpha_zero_torch/cmake_install.cmake",
 		"/home/aplax/School/Thesis/open_spiel/build/algorithms/simple/rl_alpha_zero_torch/cmake_install.cmake",
+		"/home/aplax/School/Thesis/open_spiel/build/algorithms/simple/random_alpha_zero_torch/cmake_install.cmake",
 		"/home/aplax/School/Thesis/open_spiel/build/bots/cmake_install.cmake",
 		"/home/aplax/School/Thesis/open_spiel/build/bots/human/cmake_install.cmake",
 		"/home/aplax/School/Thesis/open_spiel/build/evaluation/cmake_install.cmake",
