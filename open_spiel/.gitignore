@@ -1,4 +1,4 @@
-# build
-# download_cache
+build
+download_cache
 pybind11
 venv
