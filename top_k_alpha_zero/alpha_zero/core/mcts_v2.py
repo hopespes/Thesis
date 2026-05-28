@@ -493,7 +493,7 @@ def calc_simulations(
     steep: float = 8.0,
     infl: float = 0.5,
 ) -> int:
-    return num_simulations * sup / (1 + np.exp(-steep * (H_norm - infl)))
+    return num_simulations * (sup / (1 + np.exp(-steep * (H_norm - infl))))
 
 
 def parallel_uct_search(
@@ -591,12 +591,15 @@ def parallel_uct_search(
     # Protect from low (zero) values
     top_k_arr = np.maximum(top_k_arr, 1e-12)
     # Normalize truncated probability distribution
-    top_k_arr = top_k_arr / np.sum(top_k_arr)
+    # top_k_arr = top_k_arr / np.sum(top_k_arr)
 
     # Calculate entropyt and normalize
-    H_norm = -np.sum(top_k_arr * np.log(top_k_arr)) / np.log(find_k)
+    if (find_k == 1): 
+        H_norm = 0.0
+    else:
+        H_norm = -np.sum(top_k_arr * np.log(top_k_arr)) / np.log(find_k)
 
-    num_simulations = calc_simulations(num_simulations, H_norm)
+    num_simulations = math.floor(calc_simulations(num_simulations, H_norm))
 
     while root_node.N < num_simulations + num_parallel:
         leaves = []
@@ -687,4 +690,4 @@ def parallel_uct_search(
 
     assert root_legal_actions[move] == 1
 
-    return (move, search_pi, root_node.Q, best_child_Q, next_root_node)
+    return (move, search_pi, root_node.Q, best_child_Q, next_root_node, num_simulations)

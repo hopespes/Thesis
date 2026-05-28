@@ -8,6 +8,12 @@
 #let check(txt) = underline(text(blue, weight: "bold")[CHECK #txt])
 #let cite = underline(text(green, weight: "bold")[CITE HERE])
 
+#let appendix(body) = {
+  set heading(numbering: "A", supplement: [Appendix])
+  counter(heading).update(0)
+  body
+}
+
 #import "@preview/simple-plot:0.3.0" : plot
 
 #import "@preview/lets-go:0.1.0": go-board, go-board-9
@@ -905,7 +911,7 @@ fluidly around the inflection point at $0.5$.
       label-side: "below-right",
     ),
   ),
-  caption: [Logistical uncertainty function]
+  caption: [Logistical uncertainty function for high-rated moves' entropy.]
 ) <log_graph>
 
 Effort for this heuristic should be negligible. The algorithmic complexity
@@ -936,14 +942,31 @@ problem can be
 a more global consideration of the move probability space.
 
 $ d = sum_(a in "Top"k)pi(a) - sum_(a in A without "Top"k)pi(a), $
-$ n_"new" = n_"base" dot (2/), $ <den_eq>
+$ n_"new" = n_"base" dot 2/(1+e^(s(d - s p))), $ <den_eq>
 where
 - $pi(a)$ is the probability of $a$ in $pi$,
-- $"Top"k$ is the array of the highest-rated $k$ actions,
-- $A$ is the space of all possible actions.
+- $"Top"k$ is the array of the highest-rated $k$ actions.
 
-@den_eq is the same as @ent_eq with the entropy exchanged for the difference of
-the probability densities.
+@den_eq is similar to @ent_eq with the entropy exchanged for the difference of
+the probability densities and the sign of the slope $s$ flipped.
+
+#figure(
+  plot(
+    xmin: -0.5, xmax: 1.5,
+    ymin: 0, ymax: 2,
+    width: 3, height: 3,
+    xlabel: $x$,
+    ylabel: $y$,
+    show-grid: true,
+    (fn: x => (2 / (1 + calc.exp(8 * (x - (1/2))))), 
+      stroke: gray + 1.5pt,
+      label: $frac(2, 1+e^(8(x-0.5)))$,
+      label-pos: 0.5,
+      label-side: "below-right",
+    ),
+  ),
+  caption: [Logistical uncertainty function for High/Low Comparison.]
+) <hl_log_graph>
 
 
 
@@ -969,8 +992,8 @@ $bold("p")$ is the move probability distribution, $v$ the evaluation, and $u$
 the uncertainty estimation. 
 The number of simulations is adjusted according to
 the formula
-$ n_"new" = n_"baseline" dot exp(u). $
-This means, that searching more thoroughly correlates with higher uncertainty
+$ n_"new" = n_"base" dot exp(u). $
+This means that searching more thoroughly correlates with higher uncertainty
 while a lower number of simulations correlates with less uncertainty. The
 exponential function allows both to increase and decrease the number of
 simulations. $n_"new"$ also is limited to a maximal number to
@@ -1060,3 +1083,7 @@ used throughout the other experiments.
 
 #pagebreak()
 #bibliography("text/sources.yml", style: "ieee")
+
+#show: appendix
+#pagebreak()
+= 
