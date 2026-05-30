@@ -1,0 +1,3 @@
+datetime,game_length,game_result,num_passes,is_resign_disabled,is_marked_for_resign,is_could_won,marked_resign_player,resign_threshold,time_per_game,training_steps
+2026-05-29 09:43:48,108,B+1.5,7,True,False,False,,-1,52.8503,0
+2026-05-29 09:44:15,68,W+5.5,8,True,False,False,,-1,40.0179,0

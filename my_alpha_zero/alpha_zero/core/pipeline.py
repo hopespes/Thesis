@@ -559,6 +559,7 @@ def run_learner_loop(  # noqa: C901
                 logger.debug(
                     f'Collected {last_ckpt_games} games, {last_ckpt_samples} samples from last checkpoint (training steps {training_steps})'
                 )
+                print("actually learning")
 
                 with lock:
                     ckpt_event.set()
@@ -613,6 +614,7 @@ def run_learner_loop(  # noqa: C901
 
                 last_ckpt_games = 0
                 last_ckpt_samples = 0
+                print("end actually learning")
 
             if training_steps >= max_training_steps:
                 break
