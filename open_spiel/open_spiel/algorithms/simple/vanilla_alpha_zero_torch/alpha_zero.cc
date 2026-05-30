@@ -115,7 +115,7 @@ Trajectory PlayGame(Logger* logger, int game_num, const open_spiel::Game& game,
   std::unique_ptr<open_spiel::State> state = game.NewInitialState();
   std::vector<std::string> history;
   Trajectory trajectory;
-  // std::cout << "PlayGame" << std::endl;
+  std::cout << "PlayGame" << std::endl;
   unsigned long long start_simulations = *simulations;
   while (true) {
     if (state->IsChanceNode()) {
@@ -527,6 +527,7 @@ void learner(const open_spiel::Game& game, const AlphaZeroConfig& config,
 }
 
 bool AlphaZero(AlphaZeroConfig config, StopToken* stop, bool resuming) {
+std::cout << "start learning" << std::endl;
   std::shared_ptr<const open_spiel::Game> game =
       open_spiel::LoadGame(config.game);
 
