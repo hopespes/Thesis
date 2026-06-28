@@ -1,0 +1,3 @@
+datetime,black,black_ckpt,black_sim,white,white_ckpt,white_sim,game,game_result,game_length
+2026-06-27 17:52:37,2,./../results/vanilla_alpha_zero_28/checkpoints/go/9x9/training_steps_4000.ckpt,9406,0,./../results/vanilla_alpha_zero_28/checkpoints/go/9x9/training_steps_4000.ckpt,8899,0,B+0.5,79
+2026-06-27 17:54:14,2,./../results/vanilla_alpha_zero_28/checkpoints/go/9x9/training_steps_4000.ckpt,11805,0,./../results/vanilla_alpha_zero_28/checkpoints/go/9x9/training_steps_4000.ckpt,13879,1,W+0.5,102

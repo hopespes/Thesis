@@ -654,4 +654,4 @@ def parallel_uct_search(
 
     assert root_legal_actions[move] == 1
 
-    return (move, search_pi, root_node.Q, best_child_Q, next_root_node)
+    return (move, search_pi, root_node.Q, best_child_Q, next_root_node, num_simulations)

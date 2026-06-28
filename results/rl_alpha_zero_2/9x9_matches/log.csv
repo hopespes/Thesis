@@ -1,0 +1,21 @@
+datetime,black,white,game,game_result,game_length
+2026-06-26 15:52:56,./checkpoints/go/9x9/training_steps_6000.ckpt,./checkpoints/go/9x9/training_steps_5000.ckpt,0,B+1.5,23
+2026-06-26 15:57:42,./checkpoints/go/9x9/training_steps_6000.ckpt,./checkpoints/go/9x9/training_steps_5000.ckpt,1,B+6.5,141
+2026-06-26 16:01:54,./checkpoints/go/9x9/training_steps_6000.ckpt,./checkpoints/go/9x9/training_steps_5000.ckpt,2,B+1.5,122
+2026-06-26 16:05:38,./checkpoints/go/9x9/training_steps_6000.ckpt,./checkpoints/go/9x9/training_steps_5000.ckpt,3,W+0.5,107
+2026-06-26 16:11:30,./checkpoints/go/9x9/training_steps_6000.ckpt,./checkpoints/go/9x9/training_steps_5000.ckpt,4,B+5.5,162
+2026-06-26 16:15:50,./checkpoints/go/9x9/training_steps_6000.ckpt,./checkpoints/go/9x9/training_steps_5000.ckpt,5,B+0.5,136
+2026-06-26 16:19:51,./checkpoints/go/9x9/training_steps_6000.ckpt,./checkpoints/go/9x9/training_steps_5000.ckpt,6,B+6.5,154
+2026-06-26 16:20:30,./checkpoints/go/9x9/training_steps_6000.ckpt,./checkpoints/go/9x9/training_steps_5000.ckpt,7,B+1.5,25
+2026-06-26 16:23:58,./checkpoints/go/9x9/training_steps_6000.ckpt,./checkpoints/go/9x9/training_steps_5000.ckpt,8,B+3.5,132
+2026-06-26 16:24:34,./checkpoints/go/9x9/training_steps_6000.ckpt,./checkpoints/go/9x9/training_steps_5000.ckpt,9,B+1.5,23
+2026-06-26 16:25:20,./checkpoints/go/9x9/training_steps_6000.ckpt,./checkpoints/go/9x9/training_steps_5000.ckpt,10,B+0.5,31
+2026-06-26 16:28:00,./checkpoints/go/9x9/training_steps_6000.ckpt,./checkpoints/go/9x9/training_steps_5000.ckpt,11,B+2.5,100
+2026-06-26 16:28:40,./checkpoints/go/9x9/training_steps_6000.ckpt,./checkpoints/go/9x9/training_steps_5000.ckpt,12,B+0.5,27
+2026-06-26 16:31:45,./checkpoints/go/9x9/training_steps_6000.ckpt,./checkpoints/go/9x9/training_steps_5000.ckpt,13,B+5.5,106
+2026-06-26 16:35:29,./checkpoints/go/9x9/training_steps_6000.ckpt,./checkpoints/go/9x9/training_steps_5000.ckpt,14,B+7.5,134
+2026-06-26 16:36:34,./checkpoints/go/9x9/training_steps_6000.ckpt,./checkpoints/go/9x9/training_steps_5000.ckpt,15,B+3.5,41
+2026-06-26 16:37:21,./checkpoints/go/9x9/training_steps_6000.ckpt,./checkpoints/go/9x9/training_steps_5000.ckpt,16,B+3.5,33
+2026-06-26 16:41:52,./checkpoints/go/9x9/training_steps_6000.ckpt,./checkpoints/go/9x9/training_steps_5000.ckpt,17,B+7.5,162
+2026-06-26 16:46:19,./checkpoints/go/9x9/training_steps_6000.ckpt,./checkpoints/go/9x9/training_steps_5000.ckpt,18,B+2.5,162
+2026-06-26 16:50:54,./checkpoints/go/9x9/training_steps_6000.ckpt,./checkpoints/go/9x9/training_steps_5000.ckpt,19,B+4.5,160

@@ -34,12 +34,12 @@ flags.DEFINE_integer(
 
 flags.DEFINE_string(
     'black_ckpt',
-    './checkpoints/go/9x9/training_steps_190000.ckpt',
+    './checkpoints/go/9x9/training_steps_3000.ckpt',
     'Load the checkpoint file for black player.',
 )
 flags.DEFINE_string(
     'white_ckpt',
-    './checkpoints/go/9x9/training_steps_139000.ckpt',
+    './checkpoints/go/9x9/training_steps_2000.ckpt',
     'Load the checkpoint file for white player.',
 )
 
@@ -55,7 +55,7 @@ flags.DEFINE_float('c_puct_init', 1.25, 'Exploration constants balancing priors 
 
 flags.DEFINE_integer('num_games', 20, '')
 
-flags.DEFINE_integer('num_processes', 16, 'Run the games using multiple child processes')
+flags.DEFINE_integer('num_processes', 1, 'Run the games using multiple child processes')
 
 flags.DEFINE_string(
     'save_match_dir',

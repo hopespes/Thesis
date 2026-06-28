@@ -432,4 +432,11 @@ openspiel:
 leelazero:
   type: repository
   title: "Leela-zero"
-  url: https://github.com/leela-zero/leela-zero
+
+alpha_hu:
+  type: repository
+  title: "Alpha Zero: A PyTorch implementation of DeepMind's AlphaZero agent"
+  author: Michael Hu
+  url: https://github.com/michaelnny/alpha_zero
+  version: 2.0.0
+  year: 2022
