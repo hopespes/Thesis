@@ -1,6 +1,6 @@
 # Dynamic Adjustment of Monte Carlo Tree Search Simulations for A 9 x 9-Go-AI
+A complete virtual environment is available with ./requirements.txt
 - The code to evaluate the results is available under ./data/data.ipynb.
-  A working virtual environment is available under ./data/venv
 - The code to let the models play against each other is available under
   ./get_results.
   - Aside from rl_az, all models can be matched against each other with the
