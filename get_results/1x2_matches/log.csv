@@ -1,0 +1,11 @@
+datetime,black,black_ckpt,black_sim,white,white_ckpt,white_sim,game,game_result,game_length
+2026-06-29 00:13:47,1,./../results/top_k_alpha_zero_28/checkpoints/go/9x9/training_steps_7000.ckpt,5316,2,./../results/top_bot_k_alpha_zero_28/checkpoints/go/9x9/training_steps_5000.ckpt,5919,0,W+0.5,58
+2026-06-29 00:15:16,1,./../results/top_k_alpha_zero_28/checkpoints/go/9x9/training_steps_7000.ckpt,16781,2,./../results/top_bot_k_alpha_zero_28/checkpoints/go/9x9/training_steps_5000.ckpt,11272,1,W+2.5,115
+2026-06-29 00:16:47,1,./../results/top_k_alpha_zero_28/checkpoints/go/9x9/training_steps_7000.ckpt,15886,2,./../results/top_bot_k_alpha_zero_28/checkpoints/go/9x9/training_steps_5000.ckpt,12311,2,W+0.5,111
+2026-06-29 00:18:45,1,./../results/top_k_alpha_zero_28/checkpoints/go/9x9/training_steps_7000.ckpt,14901,2,./../results/top_bot_k_alpha_zero_28/checkpoints/go/9x9/training_steps_5000.ckpt,18601,3,B+1.5,136
+2026-06-29 00:21:23,1,./../results/top_k_alpha_zero_28/checkpoints/go/9x9/training_steps_7000.ckpt,23329,2,./../results/top_bot_k_alpha_zero_28/checkpoints/go/9x9/training_steps_5000.ckpt,20993,4,W+0.5,162
+2026-06-29 00:22:39,1,./../results/top_k_alpha_zero_28/checkpoints/go/9x9/training_steps_7000.ckpt,12571,2,./../results/top_bot_k_alpha_zero_28/checkpoints/go/9x9/training_steps_5000.ckpt,11630,5,W+1.5,90
+2026-06-29 00:24:19,1,./../results/top_k_alpha_zero_28/checkpoints/go/9x9/training_steps_7000.ckpt,16844,2,./../results/top_bot_k_alpha_zero_28/checkpoints/go/9x9/training_steps_5000.ckpt,14564,6,W+0.5,121
+2026-06-29 00:25:51,1,./../results/top_k_alpha_zero_28/checkpoints/go/9x9/training_steps_7000.ckpt,14279,2,./../results/top_bot_k_alpha_zero_28/checkpoints/go/9x9/training_steps_5000.ckpt,14739,7,B+0.5,104
+2026-06-29 00:26:59,1,./../results/top_k_alpha_zero_28/checkpoints/go/9x9/training_steps_7000.ckpt,10737,2,./../results/top_bot_k_alpha_zero_28/checkpoints/go/9x9/training_steps_5000.ckpt,10662,8,W+2.5,80
+2026-06-29 00:28:31,1,./../results/top_k_alpha_zero_28/checkpoints/go/9x9/training_steps_7000.ckpt,12117,2,./../results/top_bot_k_alpha_zero_28/checkpoints/go/9x9/training_steps_5000.ckpt,15563,9,W+1.5,118

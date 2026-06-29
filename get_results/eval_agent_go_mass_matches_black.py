@@ -34,7 +34,7 @@ flags.DEFINE_integer(
 
 flags.DEFINE_integer(
     'model1',
-    0,
+    3,
     'Load model for black player'
 )
 flags.DEFINE_string(
@@ -119,6 +119,17 @@ def mcts_player_builder(network, ckpt_file, model, device):
     if model == 2:
         from top_bot_k.core.pipeline import create_mcts_player as top_k
         return top_k(
+            network=network,
+            device=device,
+            num_simulations=FLAGS.num_simulations,
+            top_k=5,
+            num_parallel=FLAGS.num_parallel,
+            root_noise=False,
+            deterministic=False,
+        )
+    if model == 4:
+        from rand.core.pipeline import create_mcts_player as rand
+        return rand(
             network=network,
             device=device,
             num_simulations=FLAGS.num_simulations,

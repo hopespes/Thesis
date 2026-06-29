@@ -127,6 +127,17 @@ def mcts_player_builder(network, ckpt_file, model, device):
             root_noise=False,
             deterministic=False,
         )
+    if model == 4:
+        from rand.core.pipeline import create_mcts_player as rand
+        return rand(
+            network=network,
+            device=device,
+            num_simulations=FLAGS.num_simulations,
+            top_k=5,
+            num_parallel=FLAGS.num_parallel,
+            root_noise=False,
+            deterministic=False,
+        )
 
 
     return create_mcts_player(

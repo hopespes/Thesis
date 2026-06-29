@@ -1,0 +1,11 @@
+datetime,black,black_ckpt,black_sim,white,white_ckpt,white_sim,game,game_result,game_length
+2026-06-28 23:52:03,0,./../results/vanilla_alpha_zero_28/checkpoints/go/9x9/training_steps_4000.ckpt,23225,4,./../results/rand_alpha_zero_28/checkpoints/go/9x9/training_steps_6000.ckpt,24542,0,W+2.5,162
+2026-06-28 23:58:59,0,./../results/vanilla_alpha_zero_28/checkpoints/go/9x9/training_steps_4000.ckpt,17461,4,./../results/rand_alpha_zero_28/checkpoints/go/9x9/training_steps_6000.ckpt,18398,1,W+10.5,129
+2026-06-29 00:01:07,0,./../results/vanilla_alpha_zero_28/checkpoints/go/9x9/training_steps_4000.ckpt,8934,4,./../results/rand_alpha_zero_28/checkpoints/go/9x9/training_steps_6000.ckpt,9954,2,B+0.5,71
+2026-06-29 00:03:30,0,./../results/vanilla_alpha_zero_28/checkpoints/go/9x9/training_steps_4000.ckpt,15009,4,./../results/rand_alpha_zero_28/checkpoints/go/9x9/training_steps_6000.ckpt,13957,3,B+0.5,113
+2026-06-29 00:05:33,0,./../results/vanilla_alpha_zero_28/checkpoints/go/9x9/training_steps_4000.ckpt,13208,4,./../results/rand_alpha_zero_28/checkpoints/go/9x9/training_steps_6000.ckpt,24659,4,B+10.5,162
+2026-06-29 00:07:09,0,./../results/vanilla_alpha_zero_28/checkpoints/go/9x9/training_steps_4000.ckpt,13578,4,./../results/rand_alpha_zero_28/checkpoints/go/9x9/training_steps_6000.ckpt,16033,5,B+7.5,100
+2026-06-29 00:08:51,0,./../results/vanilla_alpha_zero_28/checkpoints/go/9x9/training_steps_4000.ckpt,14628,4,./../results/rand_alpha_zero_28/checkpoints/go/9x9/training_steps_6000.ckpt,17224,6,B+3.5,116
+2026-06-29 00:10:14,0,./../results/vanilla_alpha_zero_28/checkpoints/go/9x9/training_steps_4000.ckpt,10916,4,./../results/rand_alpha_zero_28/checkpoints/go/9x9/training_steps_6000.ckpt,15944,7,B+17.5,98
+2026-06-29 00:11:54,0,./../results/vanilla_alpha_zero_28/checkpoints/go/9x9/training_steps_4000.ckpt,15222,4,./../results/rand_alpha_zero_28/checkpoints/go/9x9/training_steps_6000.ckpt,16435,8,W+0.5,109
+2026-06-29 00:13:07,0,./../results/vanilla_alpha_zero_28/checkpoints/go/9x9/training_steps_4000.ckpt,10129,4,./../results/rand_alpha_zero_28/checkpoints/go/9x9/training_steps_6000.ckpt,13478,9,B+0.5,90

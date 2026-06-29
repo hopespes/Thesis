@@ -1,0 +1,11 @@
+datetime,black,black_ckpt,black_sim,white,white_ckpt,white_sim,game,game_result,game_length
+2026-06-28 18:49:50,3,./../results/rl_alpha_zero_28/checkpoints/go/9x9/training_steps_13000.ckpt,45.06679039919178,2,./../results/top_bot_k_alpha_zero_28/checkpoints/go/9x9/training_steps_5000.ckpt,19476,0,B+1.5,162
+2026-06-28 18:53:15,3,./../results/rl_alpha_zero_28/checkpoints/go/9x9/training_steps_13000.ckpt,33.30987171444621,2,./../results/top_bot_k_alpha_zero_28/checkpoints/go/9x9/training_steps_5000.ckpt,18441,1,W+3.5,134
+2026-06-28 18:56:17,3,./../results/rl_alpha_zero_28/checkpoints/go/9x9/training_steps_13000.ckpt,42.13194713875868,2,./../results/top_bot_k_alpha_zero_28/checkpoints/go/9x9/training_steps_5000.ckpt,15952,2,W+1.5,147
+2026-06-28 19:00:41,3,./../results/rl_alpha_zero_28/checkpoints/go/9x9/training_steps_13000.ckpt,46.00037356156585,2,./../results/top_bot_k_alpha_zero_28/checkpoints/go/9x9/training_steps_5000.ckpt,20792,3,W+11.5,162
+2026-06-28 19:04:12,3,./../results/rl_alpha_zero_28/checkpoints/go/9x9/training_steps_13000.ckpt,42.682317799473545,2,./../results/top_bot_k_alpha_zero_28/checkpoints/go/9x9/training_steps_5000.ckpt,18753,4,B+0.5,149
+2026-06-28 19:07:38,3,./../results/rl_alpha_zero_28/checkpoints/go/9x9/training_steps_13000.ckpt,43.9132598524099,2,./../results/top_bot_k_alpha_zero_28/checkpoints/go/9x9/training_steps_5000.ckpt,20501,5,W+14.5,162
+2026-06-28 19:10:51,3,./../results/rl_alpha_zero_28/checkpoints/go/9x9/training_steps_13000.ckpt,33.89741025268508,2,./../results/top_bot_k_alpha_zero_28/checkpoints/go/9x9/training_steps_5000.ckpt,21353,6,B+2.5,150
+2026-06-28 19:14:02,3,./../results/rl_alpha_zero_28/checkpoints/go/9x9/training_steps_13000.ckpt,38.84906823731134,2,./../results/top_bot_k_alpha_zero_28/checkpoints/go/9x9/training_steps_5000.ckpt,17693,7,W+10.5,162
+2026-06-28 19:16:59,3,./../results/rl_alpha_zero_28/checkpoints/go/9x9/training_steps_13000.ckpt,40.12418203155244,2,./../results/top_bot_k_alpha_zero_28/checkpoints/go/9x9/training_steps_5000.ckpt,18149,8,W+2.5,139
+2026-06-28 19:18:55,3,./../results/rl_alpha_zero_28/checkpoints/go/9x9/training_steps_13000.ckpt,23.732930043194486,2,./../results/top_bot_k_alpha_zero_28/checkpoints/go/9x9/training_steps_5000.ckpt,11086,9,W+8.5,93

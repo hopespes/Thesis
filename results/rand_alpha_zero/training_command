@@ -1,1 +1,0 @@
-python3 -m alpha_zero.training_go --ckpt_dir= --logs_dir --eval_games_dir --save_sgf_dir

@@ -1,1 +1,0 @@
-datetime,game_length,game_result,game_simulations,num_passes,is_resign_disabled,is_marked_for_resign,is_could_won,marked_resign_player,resign_threshold,time_per_game,training_steps

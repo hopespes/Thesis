@@ -1,11 +1,10 @@
-#set text(font:"Open Sans", size:11pt, hyphenate: false)
+#set text(font: "Times New Roman", size:12pt, hyphenate: false)
 #set par(justify: true, leading: 1.5em)
 #set heading(numbering: "1.1")
 #show math.equation.where(block: false): box
 #set math.equation(numbering: "(1)")
 
 #show heading: it => {
-  // v(0.5em)
   it 
   v(0.5em)
 }
@@ -285,6 +284,165 @@ Professional players are ranked
 separately with their own dan-scale. Nowadays, players are also evaluated using
 the Elo-system @elo. 
 
+= Historical Evolution
+== Before Deep Learning
+
+=== Before MCTS
+
+Early Go programs were usually rule-based and used pattern
+recognition combined with heuristic evaluation functions and search
+to find hard-coded patterns and choose actions based on the results.
+
+One such program is "The Many Faces of Go" that was using a large compilation of
+rules and an influence function @manyfaces_patterns.  It was competing
+successfully in Computer Go
+championships in 1998-2002. It was widely considered one of the best 
+Go programs of
+the time @computer_go. At the time, it reported online strength
+estimates at 8 kyu, corresponding to an Elo value of circa 1200.
+It has since been continuously improved and made to
+embrace new technologies until the introduction of deep learning @manyfaces_mcts.
+
+A freely consultable open-source program of the time that 
+also works based on
+rules and pattern-recognition is GnuGo @gnugo. Shortly, within the pipeline,
+GnuGo first analyses the board
+for its state, examines groups, their life-and-death, and their relation to one
+another. Next, it generates the moves, and lastly evaluates the moves for its
+effect on influence and territory. The move with the highest score is
+played.
+
+
+
+
+=== After MCTS
+
+Earlier Go programs were found to perform well in specific parts of the game like
+life-and-death problems or local tactical analysis @computer_go. However they
+were unable to play a complete game well or even better than amateur players.
+Programs of this level of sophistication could not achieve the same level of
+success
+for Go as for chess, because the computational search for Go is drastically
+different. While it is not the only factor, the state-space is much larger on a
+large board,
+$3^(19 times 19) approx 10^170$ of which $1.2%$ are legal. However, Go on a 
+9 #math.times 9-board has a
+similar branching factor to chess and has proved equally as difficult as Go on
+a large board. This is due to static position evaluation requiring a large 
+amount
+of local auxiliary computations. Additionally, in order to find legal moves, the
+recent history of the game has to be contained within the state information 
+to account
+for special rules such as Ko that forbid repetition.
+
+As the typical game is also much longer than in chess, MCTS is a tool better 
+suited to explorations because it is capable of a more
+dynamical approach @mcts. Furthermore, short-term profit may often be outpaced by an
+opponent's stronger tactical play. With the introduction of MCTS into the field
+of Computer Go, programs became
+improved significantly. 
+
+In Go on a 9 #math.times 9-board, a 5 dan professional player was
+beaten by MoGo in 2007; in 2009, a 9 dan professional by Fuego @mogo. In the course of
+pure MCTS applied to Go on a 19 #math.times 19-board, various models managed to
+defeat high-ranking professional players, albeit with up to 9 handicap stones,
+and gained a ranking of 4 dan on online play.
+
+
+
+
+
+== Deep Learning
+
+=== The Alpha-Models
+AlphaGo revolutionised the field by combining DL with MCTS.  The algorithm is
+explained in a later
+section.
+There are multiple named training runs of AlphaGo, each improving on the
+previous.
+"AlphaGo Fan", which was the program to win against a human professional on a $9
+times 9$ board, won $5$-nil @alphago. "AlphaGo Lee Sedol" won against 
+Lee Sedol with a
+record of $4-1$. The last iteration, "AlphaGo Master", won against top human 
+professionals in online games with a record of $60-0$ @alphagozero. 
+When these models were 
+compared to AlphaGo Zero, their
+Elo ratings were $3,144$, $3,739$, and $4,858$, respectively. AlphaGo Zero
+received a rating of $5,158$ @alphagozero.
+AlphaZero is another iteration on this self-play algorithm @alphazero. While ultimately the
+same structure as AlphaGo Zero, the domain-specific optimisation that Go is
+rotationally invariable is removed which reduces the amount of data of data
+available for this game. On the other side, this allows AlphaZero to be used for
+more games than just Go. The algorithm is explained in a later section.
+
+AlphaZero managed to beat state-of-the-art models in chess (Stockfish), shogi
+(Elmo), and Go (AlphaGo Zero).
+
+
+=== MuZero
+MuZero is a generalisation of the Alpha-family @muzero. While previous models required a
+working model of the environment, MuZero is capable of learning about the
+environment through interaction with the environment. While also achieving
+similar results on traditional games such as Go and chess, it is also capable of
+learning to play real-time games like Atari. In all of these domains, it was
+capable of surpassing state-of-the-art models and therefore top human
+professionals.
+
+=== Gumbel AlphaZero
+Google DeepMind's successor model, Gumbel AlphaZero, breaks from traditional
+MCTS using UCB , the basis for UCT @uct, or variants, and
+instead makes use of other policy improvement strategies @gumbelzero.
+One such strategy is sequential halving, in which the window of considered moves
+is halved considering from the highest-rated moves.
+
+=== Further research
+==== KataGo
+KataGo represents a significant step to the wider Computer Go community @katago. 
+While
+similarly strong models such as FineArt, a proprietary Chinese model, or
+LeelaZero, a "fairly faithful reimplementation" of the original AlphaGo Zero
+model @leelazero, exist, 
+KataGo is an open-source 
+model employing additional strategies.
+Improving on the architecture and
+process of AlphaZero, KataGo introduces and publicly explains several
+domain-dependent and -independent additions to improve efficiency,
+flexibility, and utility for human analysis.
+
+Some of these features include:
+- Auxiliary policy targets: In addition to simply predicting the best move for
+  the current board position, KataGo also predicts the opponent's move.
+- Playout cap randomisation: Most board positions are searched with a low number
+  of simulations and only used to train the value head, the head that evaluates
+  the likely winner of the position. Long playouts are then
+  used for policy training.
+- Blocking overplay: Forbidding playing in a certain region after a number of
+  moves contributes in efficiency, albeit little in regard to performance.
+- Auxiliary ownership and score targets: The network also predicts to whom an
+  intersection belongs as well as a estimations of the point difference at the
+  end of the game.
+
+==== Dynamic MCTS
+Forming a basis for this thesis, Lan et al. introduced
+estimations of uncertainty at intervals during training, to determine whether
+continued search is necessary @d_mcts. As MCTS finds the optimal move after 1
+simulation 62% of the time, and most positions require far less than the
+maximal number to find the optimal move, it is permissible to explore fewer situations. 
+Thus, if there is founded certainty that the best
+move has been found, search should terminate.
+// - Monte Carlo Graph Search (MCGS): A notable advancement where the search tree
+//   is generalized into a Directed Acyclic Graph (DAG). This allows the AI to
+//   recognize transpositions—different sequences of moves that lead to the
+//   identical board state—significantly reducing redundant computations on the 9x9
+//   board.
+// - Terminal Solvers: Since 9x9 Go is a smaller domain, some implementations
+//   integrate "mini-max" style terminal solvers within the MCTS leaves. If a
+//   branch can be proven as a win or loss through exhaustive search, the result is
+//   backpropagated immediately, pruning the tree.
+// - Warm-Start MCTS: Researchers have experimented with using classical heuristics
+//   (like RAVE) to "warm-start" the MCTS during the early stages of AlphaZero
+//   self-play training, mitigating the high failure rate of agents starting with
+//   purely random weights.
 
 = Technical Background
 
@@ -416,7 +574,7 @@ state from $R$, MCTS finds a state that is most likely to maximise a
 metric that can be changed per use-case. 
 Every node $i$ of the tree keeps track of how many simulations made use of $i$,
 $n_i$, and how many simulations are considered wins, $w_i$.
-There are four stages to MCTS:
+There are four stages to MCTS, the process is graphically presented in @mcts_img:
 + Selection: From $R$, choose a child node according to a selection
   method, often a variant of UCT @uct.
   Repeat until choosing a leaf node $C$.
@@ -434,6 +592,10 @@ There are four stages to MCTS:
 + Backpropagation: Update the visit and win counts in the path from $S$ to $R$
   under consideration of
   the result from the evaluation.
+#figure(
+  image("Sources/mcts.png"),
+  caption: [Illustration of MCTS from Silver et al. @alphago]
+) <mcts_img>
 Through rigorous exploration of the tree by simulations, meaning, paths from root
 to terminal nodes, the child states that most likely maximise the evaluation
 method are expected to converge to higher values in the selection method.
@@ -649,163 +811,6 @@ $1/(1+10^(-1))=91%$.
 
 
 
-= Historical Evolution
-== Before Deep Learning
-
-=== Before MCTS
-
-Early Go programs were usually rule-based and used pattern
-recognition combined with heuristic evaluation functions and search
-to find hard-coded patterns and choose actions based on the results.
-
-One such program is "The Many Faces of Go" that was using a large compilation of
-rules and an influence function @manyfaces_patterns.  It was competing
-successfully in Computer Go
-championships in 1998-2002. It was widely considered one of the best 
-Go programs of
-the time @computer_go. At the time, it reported online strength
-estimates at 8 kyu, corresponding to an Elo value of circa 1200.
-It has since been continuously improved and made to
-embrace new technologies until the introduction of deep learning @manyfaces_mcts.
-
-A freely consultable open-source program of the time that 
-also works based on
-rules and pattern-recognition is GnuGo @gnugo. Shortly, within the pipeline,
-GnuGo first analyses the board
-for its state, examines groups, their life-and-death, and their relation to one
-another. Next, it generates the moves, and lastly evaluates the moves for its
-effect on influence and territory. The move with the highest score is
-played.
-
-
-
-
-=== After MCTS
-
-Earlier Go programs were found to perform well in specific parts of the game like
-life-and-death problems or local tactical analysis @computer_go. However they
-were unable to play a complete game well or even better than amateur players.
-Programs of this level of sophistication could not achieve the same level of
-success
-for Go as for chess, because the computational search for Go is drastically
-different. While it is not the only factor, the state-space is much larger on a
-large board,
-$3^(19 times 19) approx 10^170$ of which $1.2%$ are legal. However, Go on a 
-9 #math.times 9-board has a
-similar branching factor to chess and has proved equally as difficult as Go on
-a large board. This is due to static position evaluation requiring a large 
-amount
-of local auxiliary computations. Additionally, in order to find legal moves, the
-recent history of the game has to be contained within the state information 
-to account
-for special rules such as Ko that forbid repetition.
-
-As the typical game is also much longer than in chess, MCTS is a tool better 
-suited to explorations because it is capable of a more
-dynamical approach @mcts. Furthermore, short-term profit may often be outpaced by an
-opponent's stronger tactical play. With the introduction of MCTS into the field
-of Computer Go, programs became
-improved significantly. 
-
-In Go on a 9 #math.times 9-board, a 5 dan professional player was
-beaten by MoGo in 2007; in 2009, a 9 dan professional by Fuego @mogo. In the course of
-pure MCTS applied to Go on a 19 #math.times 19-board, various models managed to
-defeat high-ranking professional players, albeit with up to 9 handicap stones,
-and gained a ranking of 4 dan on online play.
-
-
-
-
-
-== Deep Learning
-
-=== The Alpha-Models
-There are multiple named training runs of AlphaGo, each improving on the
-previous.
-"AlphaGo Fan", which was the program to win against a human professional on a $9
-times 9$ board, won $5$-nil @alphago. "AlphaGo Lee Sedol" won against 
-Lee Sedol with a
-record of $4-1$. The last iteration, "AlphaGo Master", won against top human 
-professionals in online games with a record of $60-0$ @alphagozero. 
-When these models were 
-compared to AlphaGo Zero, their
-Elo ratings were $3,144$, $3,739$, and $4,858$, respectively. AlphaGo Zero
-received a rating of $5,158$ @alphagozero.
-
-AlphaZero is another iteration on this self-play algorithm @alphazero. While ultimately the
-same structure as AlphaGo Zero, the domain-specific optimisation that Go is
-rotationally invariable is removed which reduces the amount of data of data
-available for this game. On the other side, this allows AlphaZero to be used for
-more games than just Go.
-
-AlphaZero managed to beat state-of-the-art models in chess (Stockfish), shogi
-(Elmo), and Go (AlphaGo Zero).
-
-
-=== MuZero
-MuZero is a generalisation of the Alpha-family @muzero. While previous models required a
-working model of the environment, MuZero is capable of learning about the
-environment through interaction with the environment. While also achieving
-similar results on traditional games such as Go and chess, it is also capable of
-learning to play real-time games like Atari. In all of these domains, it was
-capable of surpassing state-of-the-art models and therefore top human
-professionals.
-
-=== Gumbel AlphaZero
-Google DeepMind's successor model, Gumbel AlphaZero, breaks from traditional
-MCTS using UCB , the basis for UCT @uct, or variants, and
-instead makes use of other policy improvement strategies @gumbelzero.
-One such strategy is sequential halving, in which the window of considered moves
-is halved considering from the highest-rated moves.
-
-=== Further research
-==== KataGo
-KataGo represents a significant step to the wider Computer Go community @katago. 
-While
-similarly strong models such as FineArt, a proprietary Chinese model, or
-LeelaZero, a "fairly faithful reimplementation" of the original AlphaGo Zero
-model @leelazero, exist, 
-KataGo is an open-source 
-model employing additional strategies.
-Improving on the architecture and
-process of AlphaZero, KataGo introduces and publicly explains several
-domain-dependent and -independent additions to improve efficiency,
-flexibility, and utility for human analysis.
-
-Some of these features include:
-- Auxiliary policy targets: In addition to simply predicting the best move for
-  the current board position, KataGo also predicts the opponent's move.
-- Playout cap randomisation: Most board positions are searched with a low number
-  of simulations and only used to train the value head, the head that evaluates
-  the likely winner of the position. Long playouts are then
-  used for policy training.
-- Blocking overplay: Forbidding playing in a certain region after a number of
-  moves contributes in efficiency, albeit little in regard to performance.
-- Auxiliary ownership and score targets: The network also predicts to whom an
-  intersection belongs as well as a estimations of the point difference at the
-  end of the game.
-
-==== Dynamic MCTS
-Forming a basis for this thesis, Lan et al. introduced
-estimations of uncertainty at intervals during training, to determine whether
-continued search is necessary @d_mcts. As MCTS finds the optimal move after 1
-simulation 62% of the time, and most positions require far less than the
-maximal number to find the optimal move, it is permissible to explore fewer situations. 
-Thus, if there is founded certainty that the best
-move has been found, search should terminate.
-// - Monte Carlo Graph Search (MCGS): A notable advancement where the search tree
-//   is generalized into a Directed Acyclic Graph (DAG). This allows the AI to
-//   recognize transpositions—different sequences of moves that lead to the
-//   identical board state—significantly reducing redundant computations on the 9x9
-//   board.
-// - Terminal Solvers: Since 9x9 Go is a smaller domain, some implementations
-//   integrate "mini-max" style terminal solvers within the MCTS leaves. If a
-//   branch can be proven as a win or loss through exhaustive search, the result is
-//   backpropagated immediately, pruning the tree.
-// - Warm-Start MCTS: Researchers have experimented with using classical heuristics
-//   (like RAVE) to "warm-start" the MCTS during the early stages of AlphaZero
-//   self-play training, mitigating the high failure rate of agents starting with
-//   purely random weights.
 
 = Methodology
 In the following, possible heuristic approaches to dynamically lower the number 
@@ -1073,32 +1078,183 @@ Of the resources provided by the HPC,
 are requested for each individual training run. For the duration of 24 hours, 
 28 threads simultaneously play games to collect training data. The fixed number of
 simulations is 200 either as the hard number for the base version or as
-reference for the heuristic methods.
+reference for the heuristic methods. Informal testing showed that all models
+showed improvement during training.
 
 
-#let data = csv("ergebnisse/data.csv")
+#let data = csv("data/training_data.csv")
 #let header = data.at(0)
 #let rows = data.slice(1)
 
-#let row_names = ("Played games", "States", "Simulations", "Median sim's", "Sim's per move")
+#let row_names = ([Played~games], "States", "Simulations", [Average~sim's per state])
 
+#let transposed = range(header.len()).map(col =>
+  (strong(header.at(col)), ..range(rows.len()).map(row => rows.at(row).at(col)))
+)
+
+#let length = 4
 #figure(
   align(center)[
+    #set par(leading: 0.5em)
     #table(
-      columns: (10em, ..((8em,) * (header.len()))),
-      // header row
-      table.header(strong(""), ..header.map(h => strong(h))),
-      // data rows with names prepended
-      ..rows.enumerate().map(((i, row)) => (row_names.at(i), ..row)).flatten()
+      columns: (6.5em, ..((7em,) * length)),
+      // header row now uses row_names as column headers
+      table.header(strong(""), ..row_names.slice(0, length).map(h => strong(h))),
+      // each original column becomes a row
+      ..transposed.map(row=> (
+        row.first(),
+        ..row.slice(1).map(cell => table.cell(align: right)[#cell])
+      )).flatten()
     )
   ],
   caption: "Results of training"
+) <train>
+
+@train summarises the self-play training statistics across the five AlphaZero
+variants augmented with the heuristics. For the number of played games and
+states, the highest number is most relevant; in contrast, the number of simulations 
+and the average number of
+simulations should be small. 
+
+The largest amount of games was played
+by #rl with $81,288$ games. Furthermore, the
+highest number of states was researched by #van with $8.1$ mio. states. 
+The lowest number of
+simulations was executed by #rand with $1.033$ mio. simulations. The
+lowest number of average simulations was done by #topk with $186$. 
+Regarding the goal of increasing the number of games as much as possible, 
+#rl seems very successful. However, this makes the relatively smaller number of
+simulations more surprising.
+
+
+#let ratio_sim_v_ra = calc.round(
+  (float(data.at(3).at(0)) / float(data.at(3).at(4)) - 1) * 100, 
+  digits: 2) 
+#let ratio_sim_v_rl = calc.round(
+  (float(data.at(3).at(0)) / float(data.at(3).at(3)) - 1) * 100, 
+  digits: 2) 
+The ratio of the greatest difference in simulation number is between #van and
+#rand and is about $#ratio_sim_v_ra %$. The second-highest simulation count is from
+#rl and is $#ratio_sim_v_rl %$ lower than #van's. That base #van has such a large amount of
+simulations more may indicate that the overhead from every heuristic is larger
+than expected. This interpretation is also supported by the  fact that #rand has
+approximately the same amount of simulations per state as #van as this indicates
+that on average the same amount of time was spent on every node's tree search
+aside from the generation of a random number.
+
+#let ratio = calc.round(
+  (float(data.at(1).at(1)) / float(data.at(1).at(2)) - 1) * 100,
+  digits: 2)
+It stands to reason that since #topbotk has the highest average number of
+simulations per move, this causes the search of states and consequently the
+generation of games to stall.
+Since #rl has a high number of games but compared to #van a low number of
+states, it seems apparent that the training games of #rl are shorter than for
+other versions.
+
+
+
+#linebreak()
+
+#let games_data = csv("data/games_data_black.csv")
+#let games_header = games_data.at(0)
+#let games_rows = games_data.slice(1)
+
+#let games_row_names = (van, topk, topbotk, rl, rand)
+
+#let combined_games_data = games_data.enumerate().map(((i, row)) => (
+  if i == 0 {
+    ("B/W",) + row
+  } else {
+    (games_row_names.at(i - 1),) + row
+  }
+))
+#figure(
+  align(center)[
+    #set par(leading: 0.5em)
+    #table(
+      columns: (6.5em, ..((6em,) * games_data.first().len())),
+      ..combined_games_data.flatten()
+    )
+  ],
+  caption: "Results of matched playing from the perspective of black."
+) <games_res_black>
+
+#let games_data = csv("data/game_results_opp.csv")
+#let games_header = games_data.at(0)
+#let games_rows = games_data.slice(1)
+#let games_row_names = (van, topk, topbotk, rl, rand)
+
+#let combined_games_data = games_data.enumerate().map(((i, row)) => (
+  if i == 0 {
+    ("",) + row
+  } else {
+    (games_row_names.at(i - 1),) + row
+  }
+))
+
+// Transpose: number of columns = number of original rows (including label column)
+#let num_cols = combined_games_data.len()
+#let num_rows = combined_games_data.at(0).len()
+
+#figure(
+  align(center)[
+    #set par(leading: 0.5em)
+    #table(
+      columns: (6.5em, ..((6em,) * (num_cols - 1))),
+      ..combined_games_data.flatten()
+    )
+  ],
+  caption: "Results of matched playing from the perspective of white."
+) <games_opp>
+#let games_total = csv("data/games_data_total.csv").slice(1)
+#let sims_data = csv("data/games_sims_total.csv").slice(1)
+#let games_row_names = (van, topk, topbotk, rl, rand)
+
+#let combined_sims_data = (
+  ("Model", "Wins", "Simulations"),
+  ..sims_data.enumerate().map(((i, row)) => (
+    games_row_names.at(i),
+    games_total.at(i).at(0),
+    str(calc.round(float(row.at(0)), digits: 2)),
+  ))
 )
+@games_res_black presents how many games a model in the row playing as black has
+won against
+the model in the column playing as white. 
+In contrast, @games_opp presents the
+total number of wins in each matchup either as black or white. Values below the
+diagonal are won by the row-model. Values above the diagonal are won by the
+row-model.
 
-Model #rl shows a far longer larger collection of games as compared to base
-#van. However, the number of researched states is far lower than for #van.
 
+#figure(
+  align(center)[
+    #set par(leading: 0.5em)
+    #table(
+      columns: (6.5em, 6em, 6em),
+      ..combined_sims_data.flatten()
+    )
+  ],
+  caption: "Number of simulations per model over all games."
+) <games_sims>
 
+@games_sims presents the number of matches won over all $80$ matches against the
+other versions. 
+It is
+evident from these tables that #topbotk is the most successful of models with
+$#games_total.at(2).at(0)$ total wins and $#sims_data.at(0).at(0)$ simulations.
+The least
+successful version is #rl with $27$ total wins with the fewest number of 
+simulations of
+$#sims_data.at(3).at(0)$. Curiously,
+#rand has the highest number of simulations and the second-lowest number of wins
+with $32$. 
+
+Positively, #topk has the second-lowest number of simulations executed during
+the games with $#sims_data.at(1).at(0)$ but also the second-highest number of
+wins with $#games_total.at(1).at(0)$. Comparing this to #van and #rand, which
+both have fewer games won and more simulations executed, it is quite sucessful.
 
 
 
@@ -1107,26 +1263,94 @@ Model #rl shows a far longer larger collection of games as compared to base
 
 = Discussion
 
+#let ratio_games_r_v = calc.round(
+  (float(data.at(1).at(3)) / float(data.at(1).at(0)) - 1) * 100, 
+  digits: 2)
 
+It is not clear how #rl came to execute $#ratio_games_r_v %$ more games
+than #van even though, fewer simulations have been executed and the average
+amount of simulations is higher.
 
 
 There are many issues that can be raised against this project. First, only one
-training run for each variation of AlphaZero has been executed. Furthermore,
-training data was sparse because of the short time of training.
+training run for each variation of AlphaZero has been executed, thus
+reproducability of these results has not been verified here. Furthermore,
+training data was sparse because of the short time of training and
+less hardware than is required for stable training. This also exacerberates the
+fact that at high levels of play even small mistakes can quickly lead to
+catastrophic results. As none of these versions of AlphaZero can be expected to
+have reached high capability, the results may change on reproduction with
+increased time and hardware limits.
+Additionally,
+the number of simulations that are executed in each board state should be kept
+track of to accurately judge how the heuristics respond to board positions.
 
-Another issue that needs to be raised here,
-is that it cannot be conclusively proved that #check([equal]) performance while
-#check([lower]) simulation cost is due to the methods suggested here. To answer
-this question, randomised numbers of simulations in the appropriate range could
-be used.
 
-Nonetheless, these results do give reference points that models can be allowed
-to predict their own certainty to increase efficiency within a certain context.
-For example, at the highest level of play, even small errors can lead to a loss
-of the match. 
+#linebreak()
+If despite these weaknesses these results are taken at face value, they show
+show little positive results. Not only do the heuristics research far fewer states 
+but
+most heuristics also show an increased number average simulations per state.
 
+
+However, The training games and runs shows positive results for #topk. First, it
+has lower number of average simulations per state than any other version in the
+training runs. Second, it has won the second-most games of any version. Next,
+it has also executed the second-lowest number of simulations over all test games
+of any version. Further experimention on this heuristic could include changing
+the window of consideration and a warm up phase, in which the heuristics is not
+applied so that the model may learn a baseline understanding of the environment
+first. Lastly, the uncertainty function may be made more or less aggressive by 
+changing the $s p$ parameter.
+
+As #rand is the second-weakest player
+and #topk the second-strongest and the direct exchange won by #topk with a
+record of $17:3$, #topk seems far more capable than #rand. Thus, it can be
+assumed that the intent does matter in manipulating the number of simulations,
+as long as the number of simulations to which #topk is compared is not too high,
+as the comparison with #topbotk shows.
+
+Furthermore, I think that #rl still holds promise. Because of the aforementioned
+issues of this thesis, an additional head to the network may more noise than can
+reasonably be offset by the network.
+Especially in the beginning of training, this may cause additional confusion.
+However, this may be resolved by again using warm-up phases to relieve noise on
+gameplay itself in
+early stages of training and gradually start applying  uncertainty to calculating new
+simulation budgets and
+reintroducing the training of the uncertainty head into the loss.
 
 = Conclusion
+
+
+This thesis has presented the historical and theoretical background of
+AlphaZero systems. It has then presented methods which were expected to
+improve such systems' efficiency. This goal has not been reached by many of the
+heuristics with the exception being #topk. Next, the results of the training
+runs and the test games were analysed.
+
+
+Of all heuristics, #topbotk achieved the highest number of wins
+overall, demonstrating that larger simulation budgets will mostly
+generate better results. In contrast, #rl proved to be a surprising result as,
+despite the high number of played games it has a low number of simulations, which 
+indicates a short average game length, it has not learned to learn the game
+effectively.
+
+Notably, the baseline #van remained competitive throughout, achieving comparable
+results to more complex variants while being the least expensive to train per
+unit time. This suggests that the overhead introduced by most heuristics
+outweighs their benefits, at least within the training duration examined here.
+The overarching finding of this thesis is therefore that simplicity is
+competitive with complexity in this setting.
+
+
+This thesis could not produce conclusive evidence pointing to a positive answer
+to the hypothesis. Further research and experimentation is needed to answer the
+following questions: Are these results reproducable? Do heuristics agree on the
+certainty of a situation? And what effects does changing the window of consideration
+have on #topk and #topbotk?
+
 
 
 
